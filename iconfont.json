@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "20318765",
+      "name": "played",
+      "font_class": "played",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "19652445",
+      "name": "Video",
+      "font_class": "video",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "20318533",
+      "name": "mini",
+      "font_class": "symbol",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "20318514",
+      "name": "full",
+      "font_class": "full",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "20318365",
+      "name": "add_home",
+      "font_class": "add_home",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "20318282",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "20318230",
+      "name": "random",
+      "font_class": "random",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "20318177",
+      "name": "share",
+      "font_class": "share",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
       "icon_id": "20313325",
       "name": "history",
       "font_class": "history",
