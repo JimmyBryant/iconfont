@@ -1,0 +1,247 @@
+{
+  "id": "2413788",
+  "name": "weGame",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "20313325",
+      "name": "history",
+      "font_class": "history",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "20313170",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "20313095",
+      "name": "star",
+      "font_class": "favorite",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "20313078",
+      "name": "favorite",
+      "font_class": "stars",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "20313056",
+      "name": "hot",
+      "font_class": "hot",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "20311701",
+      "name": "role-playing",
+      "font_class": "role-playing",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "20311068",
+      "name": "music",
+      "font_class": "music",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "20311031",
+      "name": "kids",
+      "font_class": "kids",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "20311005",
+      "name": "new",
+      "font_class": "new",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "20310977",
+      "name": "halloween",
+      "font_class": "halloween",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "20310968",
+      "name": "family",
+      "font_class": "family",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "20310949",
+      "name": "casual",
+      "font_class": "casual",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "20310921",
+      "name": "card",
+      "font_class": "card",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "20310902",
+      "name": "board",
+      "font_class": "board",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "20310793",
+      "name": "sports",
+      "font_class": "sports",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "20310783",
+      "name": "skill",
+      "font_class": "skill",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "20310747",
+      "name": "puzzle",
+      "font_class": "puzzle",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "20310739",
+      "name": "shooting",
+      "font_class": "shooting",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "20310661",
+      "name": "platform",
+      "font_class": "platform",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "20310652",
+      "name": "paiting",
+      "font_class": "painting",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "20310626",
+      "name": "matching",
+      "font_class": "matching",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "20310615",
+      "name": "driving",
+      "font_class": "driving",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "20310591",
+      "name": "solitaire",
+      "font_class": "solitaire",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "20310566",
+      "name": "arcade",
+      "font_class": "arcade",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "20310549",
+      "name": "adventure",
+      "font_class": "adventure",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "20310533",
+      "name": "action",
+      "font_class": "action",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "20310043",
+      "name": "girl",
+      "font_class": "girl",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "20310100",
+      "name": "boy",
+      "font_class": "boy",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "20310147",
+      "name": "bady",
+      "font_class": "bady",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "20310186",
+      "name": "word",
+      "font_class": "word",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "20310212",
+      "name": "trivia",
+      "font_class": "trivia",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "20310223",
+      "name": "strategy",
+      "font_class": "strategy",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "20310318",
+      "name": "simulation",
+      "font_class": "simulation",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "20310332",
+      "name": "racing",
+      "font_class": "racing",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    }
+  ]
+}
