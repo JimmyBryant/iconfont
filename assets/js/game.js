@@ -106,40 +106,42 @@ if (document.body.clientWidth <= 767) {
 /**
  * 添加到主屏幕
  */
-let deferredPrompt; 
-const addBtn = document.querySelectorAll('.home_add'); 
-const footerBtn = document.querySelector('#home'); 
+let deferredPrompt;
+const addBtn = document.querySelectorAll('.home_add');
+const footerBtn = document.querySelector('#home');
 footerBtn.style.display = 'none';
 var i;
 
 //浏览器触发Add to home 时会触发一个beforeinstallprompt事件，我们监听这个事件
-window.addEventListener('beforeinstallprompt', (e) => { 
-  console.log(e.platforms);
-  e.preventDefault(); // 阻止浏览器的默认事件
-  deferredPrompt = e; // 储存事件对象，方便在之后的按钮事件中手动触发
-  
-  $(window).scroll(function(event){
-    var winPos = $(window).scrollTop();
-    if (winPos > $(window).height() && document.body.clientWidth <= 1024) {
-      footerBtn.style.display = 'flex';
+window.addEventListener('beforeinstallprompt', (e) => {
+    console.log(e.platforms);
+    e.preventDefault(); // 阻止浏览器的默认事件
+    deferredPrompt = e; // 储存事件对象，方便在之后的按钮事件中手动触发
+
+    $(window).scroll(function (event) {
+        var winPos = $(window).scrollTop();
+        if (winPos > $(window).height() && document.body.clientWidth <= 1024) {
+            footerBtn.style.display = 'flex';
+        }
+    });
+    for (i = 0; i < addBtn.length; i++) {
+        addBtn[i].addEventListener('click', (e) => {
+
+            deferredPrompt.prompt(); // 弹出Add to home 提示
+            // addBtn.style.display = 'none'; // 用户点击后将按钮隐藏
+            // 等待用户操作结果
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the Add to home prompt');
+                }
+                else {
+                    console.log('User dismissed the Add to home prompt');
+                }
+                // 只能用一次，不管用户拒绝还是同意都不在弹出
+                // deferredPrompt = null;
+            });
+        });
     }
-  });
-  for (i = 0; i < addBtn.length; i++) {
-    addBtn[i].addEventListener('click', (e) => { 
-      
-      deferredPrompt.prompt(); // 弹出Add to home 提示
-      // addBtn.style.display = 'none'; // 用户点击后将按钮隐藏
-        // 等待用户操作结果
-      deferredPrompt.userChoice.then((choiceResult) => { 
-      if (choiceResult.outcome === 'accepted') { 
-        console.log('User accepted the Add to home prompt'); } 
-      else { 
-        console.log('User dismissed the Add to home prompt'); } 
-       // 只能用一次，不管用户拒绝还是同意都不在弹出
-      // deferredPrompt = null;
-      }); 
-    }); 
-  }
 });
 
 $(function () {
@@ -156,35 +158,44 @@ $(function () {
             ad.style.cssText = 'text-align:center;';
 
             ad.innerHTML = '<ins class="adsbygoogle '
-            + id            
-            +'" style="display:inline-block;width:100%;" data-ad-client="'
-            + client
-            + '" data-ad-slot="'
-            + slot
-            + '" ></ins>'
-            
+                + id
+                + '" style="display:inline-block;width:100%;" data-ad-client="'
+                + client
+                + '" data-ad-slot="'
+                + slot
+                + '" ></ins>'
+
 
             box.appendChild(ad);
             (adsbygoogle = window.adsbygoogle || []).push({});
         }
     }
-    // 首页广告
-    insertGads("home_ad_01", "ca-pub-2994572689024438", "2855201156");
-    insertGads("home_ad_02", "ca-pub-2994572689024438", "8054437383");
-    insertGads("home_ad_03", "ca-pub-2994572689024438", "6741355711");
 
-    // 分类页
-    insertGads("cate_ad_01", "ca-pub-2994572689024438", "6741355711");
+    function renderAd() {
+        // adsense js
+        $('head').append($('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">'));
+        (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-2994572689024438", enable_page_level_ads: true, overlays: { bottom: true } });
 
-    // 详情页
-    insertGads("detail_ad_01", "ca-pub-2994572689024438", "7317190342");
-    insertGads("detail_ad_02", "ca-pub-2994572689024438", "6004108672");
-    insertGads("detail_ad_03", "ca-pub-2994572689024438", "9175947364");
+        // 首页广告
+        insertGads("home_ad_01", "ca-pub-2994572689024438", "2855201156");
+        insertGads("home_ad_02", "ca-pub-2994572689024438", "8054437383");
+        insertGads("home_ad_03", "ca-pub-2994572689024438", "6741355711");
 
-    // 游戏页
-    insertGads("play_ad_01", "ca-pub-2994572689024438", "7317190342");
-    insertGads("play_ad_02", "ca-pub-2994572689024438", "6004108672",false);
-    insertGads("play_ad_03", "ca-pub-2994572689024438", "9175947364");
+        // 分类页
+        insertGads("cate_ad_01", "ca-pub-2994572689024438", "6741355711");
+
+        // 详情页
+        insertGads("detail_ad_01", "ca-pub-2994572689024438", "7317190342");
+        insertGads("detail_ad_02", "ca-pub-2994572689024438", "6004108672");
+        insertGads("detail_ad_03", "ca-pub-2994572689024438", "9175947364");
+
+        // 游戏页
+        insertGads("play_ad_01", "ca-pub-2994572689024438", "7317190342");
+        insertGads("play_ad_02", "ca-pub-2994572689024438", "6004108672", false);
+        insertGads("play_ad_03", "ca-pub-2994572689024438", "9175947364");
+    }
+
+    renderAd(); // 展示广告
 
     $('#mobile-right').click(function () {
         $("#mobile-menu").css("left", "0");
@@ -200,6 +211,37 @@ $(function () {
     $("#menu").click(function () {
         $(".hd-menu-box").slideToggle();
     });
+
+
+    $(document).on("click", ".icon_close", function () {
+        $(this).parent().parent().remove();
+        var deletext = $(this).siblings(".pop_item").children(".pop_name").text();
+        localStorage.removeItem(deletext);
+
+        var localmark = localStorage.getItem("localmark");
+        arr = localmark.substring(0, localmark.length - 1).split("/");
+        console.log(arr);
+        $(arr).each(function (i, item) {
+            // console.log(arr);
+            if (arr[i] == deletext) {
+                arr.splice(jQuery.inArray(arr[i], arr), 1);
+            }
+        })
+        console.log(arr);
+        if (arr.length != 0) {
+            arr = arr.join('/');
+            arr = arr + '/';
+            localStorage.setItem("localmark", arr);
+        } else {
+            localStorage.removeItem("localmark");
+            $(".fav_listbox").hide().siblings(".empty").show();
+        }
+
+        var numItems1 = $(".nav_li .fav_num").text();
+        $(".fav_num").text(parseInt(numItems1) - 1);
+
+    });
+
     $(document).on("click", ".fullscreen", function () {
         let fullarea = document.getElementById('game');
         // if (hasMove1 != true) {
@@ -291,7 +333,7 @@ $(function () {
             str1 += '<a href="' + localjson1.href2 + '" class=\"game_img\">';
             str1 += '<img src="' + localjson1.img2 + '"></a>';
             str1 += '<a href="' + localjson1.href2 + '" class=\"pop_item\"><h4 class=\"pop_name\">' + arr[i] + '</h4></a>';
-            str1 += '<svg class=\"icon_close\"><use xlink:href=\"#icon_close\"></use></svg></div></li>';
+            str1 += '<svg class=\"icon_close\"><use xlink:href=\"#icon-close\"></use></svg></div></li>';
 
             $("#fav_list").append(str1);
             $(".fav_listbox").show().siblings(".empty").hide();
@@ -332,7 +374,7 @@ $(function () {
         } else {
             var txt2 = $(".game_title").text();
             var href2 = location.href;
-            var img2 = $(".img_topfix>img").attr('src');
+            var img2 = $(".gamejoy_img").attr('src');
             // var playNum2 = "14K Plays";
 
             var localjson = {

@@ -1025,19 +1025,42 @@ input:-internal-autofill-selected {
     fill: #fff;
     transform: translateX(-1px);
 }
+#right_sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 200px;
+    overflow: hidden;
+    z-index: 4000;
+    box-shadow: 0 0 4px 0 rgb(0 0 0 / 70%);
+    background-color:$color-secondary;
+    overflow-y: scroll;
+}
 #mobile-menu{
     position: absolute;
     top: 0;
     /*left: -100%;*/
     left: 0;
-    background: #222;
-    width: 324px;
+    background:$color-secondary;
+    width: 200px;
     height: 100%;
     z-index: 999;
     transition: left .6s ease;
     overflow-x: hidden;
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
     /*padding-bottom: 10px*/
+    .gameinfo{
+        background: #222;
+        overflow: hidden;
+    }
+}
+#mobile-menu,#right_sidebar{
+    .top-wrapper{
+        height: 202px;
+        margin-bottom:20px;
+    }
 }
 
 .gameinfo img{
@@ -1052,11 +1075,13 @@ input:-internal-autofill-selected {
     float: left;
     width: calc(100% - 72px);
     color: #fff;
-    margin: 20px 0 0;
+    margin: 10px 0 0;
     letter-spacing: .5px;
     font-family: 'Roboto Slab';
-    font-size: 22px;
-    line-height: 30px;
+    font-size: 20px;
+    line-height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .similargames_logo{
     width: 180px;
@@ -1069,47 +1094,47 @@ input:-internal-autofill-selected {
     width: 100%;
     background: #FFF;
 }
-
 .similargames_title{
-    background-color: #222;
+    background-color:$bg-primary;
     width: 100%;
-    padding: 0 8px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #333;
-    margin-bottom: 6px;
+    padding: 12px 6px;
+    .icon_button,.icon_full,.icon_mini{
+        width: 30px;
+        height: 28px;
+        cursor: pointer;
+    }
 }
-
 .similargames_title .iconlinears{
     width: 30px;
     height: 28px;
     fill: #fff;
-    transform: translateY(2px);
+    // transform: translateY(2px);
 }
-.similargames_title_share{
-    margin-left: 22px;
-    margin-right: 26px;
-}
-.similargames_title .icon_home{
-    margin-right: 26px;    
-    transform: translateY(1px);
-    width: 26px;
-}
-.similargames_title .icon_share{
-    width: 22px;
-    height: 25px;
-}
-.similargames_title .fullscreen{
-    display: block;
-    transform: translateY(2px);
-}
-.similargames_title .icon_full,.similargames_title .icon_nimi{
-    width: 25px;
-    height: 25px;
-}
+// .similargames_title_share{
+//     margin-left: 22px;
+//     margin-right: 26px;
+// }
+// .similargames_title .icon_home{
+//     margin-right: 26px;    
+//     transform: translateY(1px);
+//     width: 26px;
+// }
+// .similargames_title .icon_share{
+//     width: 22px;
+//     height: 25px;
+// }
+// .similargames_title .fullscreen{
+//     display: block;
+//     transform: translateY(2px);
+// }
+// .similargames_title .icon_full,.similargames_title .icon_nimi{
+//     width: 25px;
+//     height: 25px;
+// }
 .similargames_title_close{
     position: absolute;
     right: 10px;
@@ -1127,18 +1152,19 @@ input:-internal-autofill-selected {
     flex-direction: row;
     margin-right: -10px;
     flex-wrap: wrap;
-    padding: 0 12px;
+    padding: 0 6px;
     box-sizing: border-box;
 }
 #similargames_content .pop_li{
     display: list-item;
-    margin-top: 10px;
+    margin-top: 20px;
     padding-right: 10px;
     box-sizing: border-box;
-    width: 50%
+    width: 50%;
 }
 #similargames_content .pop_li .pop_name{
-    display: none;
+    display: block;
+    font-size: 12px;
 }
 #similargames_content .game_img{
     padding-top: 100%
@@ -1211,15 +1237,15 @@ input:-internal-autofill-selected {
 
 #ads_fix{
     display: block;
-    width: calc(100% - 324px);
+    width: calc(100% - 400px);
     position: fixed;
     bottom: 0;
     height: 100px;
-    margin: 0 0 0 324px;
+    margin: 0 0 0 200px;
     text-align: center;
 }
 .ads_fix_inner{
-    width: 728px;
+    width: 970px;
     margin: 0 auto
 }
 .info_ads{
@@ -1755,17 +1781,26 @@ input:-internal-autofill-selected {
     position: sticky;
     top: 16px;
 }
-
-.game{
-    width: calc(100% - 324px);
+.game{    
+    margin: 0;    
     height: auto;
-    background-color: #333;
-    position: relative;
-    margin: 0 0 0 324px;
+    width: calc(100% - 400px);
     position: absolute;
-    top: 0;
+    top: 0px;
+    left:200px;
     bottom: 120px;
+    overflow: hidden;
 }
+// .game{
+//     width: calc(100% - 324px);
+//     height: auto;
+//     background-color: #333;
+//     position: relative;
+//     margin: 0 0 0 324px;
+//     position: absolute;
+//     top: 0;
+//     bottom: 120px;
+// }
 .game_bg{
     width: 100%;
     height: 100%;
@@ -2560,13 +2595,15 @@ span.usetips-item {
 }
 .detail_ad_01,
 .detail_ad_02{
-    height: 120px;
+    height: 100px;
 }
 .detail_ad_03{
-    height:300px;
+    width:100%;
+    height:250px;
 }
-.play_ad_01{
-    height:300px;
+.play_ad_01,.play_ad_03{
+    width:180px;
+    height:600px;
 }
 .play_ad_02{
     height:90px;
