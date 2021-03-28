@@ -1,6 +1,7 @@
 $containerWidth: 1280px;
 /** background color **/
 $bg-primary:#202020;
+$bg-pink:#ff5b5b;
 $bg-secondary:#FFF;
 $bg-secondary-variant:#FAFAFA;
 /** color **/
@@ -177,7 +178,7 @@ body{
     height: 150px;
     /* background-color: rgba(0,0,0,.5); */
     border-radius: 8px;
-    border: 5px dashed #ff5b5b;
+    border: 5px dashed $bg-pink;
     position: absolute;
     top: 100vh;
     left: -250px;
@@ -468,7 +469,7 @@ footer .logo{
     color: #999;
 }
 .container li:hover a{
-    color: #ff5b5b;
+    color: $bg-pink;
 }
 .sub .common_title{
     font-family: 'Roboto Slab';
@@ -533,7 +534,7 @@ input::input-placeholder{
 .sub .icon_send{
     width: 20px;
     height: 20px;
-    fill: #ff5b5b;
+    fill: $bg-pink;
 }
 .wrong {
     color: red;
@@ -1035,7 +1036,7 @@ input:-internal-autofill-selected {
     overflow: hidden;
     z-index: 4000;
     box-shadow: 0 0 4px 0 rgb(0 0 0 / 70%);
-    background-color:$color-secondary;
+    transition: right .6s ease;
     overflow-y: scroll;
 }
 #mobile-menu{
@@ -1043,7 +1044,6 @@ input:-internal-autofill-selected {
     top: 0;
     /*left: -100%;*/
     left: 0;
-    background:$color-secondary;
     width: 200px;
     height: 100%;
     z-index: 999;
@@ -1052,11 +1052,12 @@ input:-internal-autofill-selected {
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
     /*padding-bottom: 10px*/
     .gameinfo{
-        background: #222;
+        background: $bg-primary;
         overflow: hidden;
     }
 }
 #mobile-menu,#right_sidebar{
+    background:$color-primary;
     .top-wrapper{
         height: 202px;
         margin-bottom:20px;
@@ -1080,6 +1081,7 @@ input:-internal-autofill-selected {
     font-family: 'Roboto Slab';
     font-size: 20px;
     line-height: 26px;
+    height: 52px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -1101,19 +1103,19 @@ input:-internal-autofill-selected {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 12px 6px;
-    .icon_button,.icon_full,.icon_mini{
-        width: 30px;
-        height: 28px;
+    padding: 12px 6px 0;
+    .icon_button{
         cursor: pointer;
     }
+    .iconlinears{
+        width: 28px;
+        height: 26px;
+        fill: #fff;
+        margin:0;
+        // transform: translateY(2px);
+    }
 }
-.similargames_title .iconlinears{
-    width: 30px;
-    height: 28px;
-    fill: #fff;
-    // transform: translateY(2px);
-}
+
 // .similargames_title_share{
 //     margin-left: 22px;
 //     margin-right: 26px;
@@ -1146,7 +1148,7 @@ input:-internal-autofill-selected {
     height: 30px;
     fill: #fff;
 }
-#similargames_content{
+.similargames_content{
     /*background-color: #00547c;*/
     display: flex;
     flex-direction: row;
@@ -1154,25 +1156,28 @@ input:-internal-autofill-selected {
     flex-wrap: wrap;
     padding: 0 6px;
     box-sizing: border-box;
+    margin-bottom: 20px;
+    .pop_li{
+        display: list-item;
+        margin-top: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+        width: 50%;
+    }
+    .pop_li .pop_name{
+        display: block;
+        font-size: 12px;
+    }
+    .game_img{
+        padding-top: 100%
+    }
+    .game_img img{
+        object-fit: cover;
+        height: 100%;
+    }
 }
-#similargames_content .pop_li{
-    display: list-item;
-    margin-top: 20px;
-    padding-right: 10px;
-    box-sizing: border-box;
-    width: 50%;
-}
-#similargames_content .pop_li .pop_name{
-    display: block;
-    font-size: 12px;
-}
-#similargames_content .game_img{
-    padding-top: 100%
-}
-#similargames_content .game_img img{
-    object-fit: cover;
-    height: 100%;
-}
+
+
 
 #gameplug{
     width: 86px;
@@ -1190,7 +1195,7 @@ input:-internal-autofill-selected {
     top: -5px;
     right: -5px;
     font-size: 12px;
-    background-color: #ff5b5b;
+    background-color: $bg-pink;
     color: #fff;
     width: 20px;
     height: 20px;
@@ -1212,14 +1217,14 @@ input:-internal-autofill-selected {
     border-radius: 15px;
     width: 84px;
     height: 84px;
-    border: 1px solid #ff5b5b;
+    border: 1px solid $bg-pink;
     object-fit: cover;
 }
 #gameplug a span{
     text-align: center;
     color: #fff;
     text-decoration: none;
-    background-color: #ff5b5b;
+    background-color: $bg-pink;
     line-height: 20px;
     display: block;
     position: absolute;
@@ -1335,7 +1340,7 @@ input:-internal-autofill-selected {
 .left_img .playNow{
     width: 100%;
     height: 48px;
-    background-color: #ff5b5b;
+    background-color: $bg-pink;
     border-radius: 8px;
     line-height: 48px;
     font-family: 'Roboto Slab','Italic';
@@ -1438,15 +1443,15 @@ input:-internal-autofill-selected {
     left: 0;
 }
 .dots li:hover{
-    border: solid 2px #ff5b5b;
+    border: solid 2px $bg-pink;
     transition: all ease 0.3s;
 }
 .dots li:hover .actv{
-    color: #ff5b5b;
+    color: $bg-pink;
     transition: all ease 0.3s;
 }
 .dots li:hover svg{
-    fill: #ff5b5b;
+    fill: $bg-pink;
     transition: all ease 0.3s;
 }
 .dots li:not(:last-child){
@@ -1485,7 +1490,7 @@ input:-internal-autofill-selected {
     color: #ff3333!important; 
 }
 .remove_fav{
-    border-color: #ff5b5b!important;
+    border-color: $bg-pink!important;
 }
 .QRCode_box{
     display: flex;
@@ -1760,7 +1765,7 @@ input:-internal-autofill-selected {
     font-weight: 700;
     border-radius: 5px;
     text-align: center;
-    background-color: #ff5b5b;
+    background-color: $bg-pink;
     border: 1px solid #fff;
     outline: 0;
     text-shadow: 1px 1px 3px rgba(0,0,0,.4);
@@ -1925,7 +1930,8 @@ input:-internal-autofill-selected {
 #joy_start{
     text-align: center;
     width: 300px;
-    background-color: #ff5b5b;
+    margin: 0 auto;
+    background-color: $bg-pink;
     border-radius: 5px;
     z-index: 2;
     box-shadow: 0 0 3px rgba(0,0,0,.5);
@@ -2117,7 +2123,7 @@ input:-internal-autofill-selected {
     transition: all ease 0.5s;
     cursor: pointer;
     display: none;
-    fill: #333
+    fill: $bg-pink;
 }
 .fav_list .pop_li_box:hover .icon_close{
     display: inline;
@@ -2138,7 +2144,6 @@ input:-internal-autofill-selected {
     object-fit: cover;
 }
 .empty .add{
-
     font-size: 18px;
     line-height: 26px;
     color: #aaaaaa;
@@ -2261,7 +2266,7 @@ input:-internal-autofill-selected {
     /*float: left;*/
 }
 .paging a {
-    background: #ff5b5b;
+    background: $bg-pink;
     display: inline-block;
     height: 46px;
     line-height: 46px;
@@ -2278,13 +2283,13 @@ input:-internal-autofill-selected {
 .paging a:hover{
     background: #fff;
     border-bottom: 4px solid #c9c9c9;
-    color: #ff5b5b;
+    color: $bg-pink;
 }
 .paging a.active {
     cursor: default;
     background: #fff;
     border-bottom: 4px solid #c9c9c9;
-    color: #ff5b5b;
+    color: $bg-pink;
 }
 .paging a:last-child {
     margin-right: 0;
@@ -2329,20 +2334,29 @@ input:-internal-autofill-selected {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 2px 9px 1px rgba(0, 0, 0, 0.05);
+    padding:3px 0;
     /*margin: 5px 12px 5px 0;*/
-    /*padding: 3px;*/
     overflow: hidden;
 
     width: 100%;
     word-break: break-all;
 }
 .lists_cate li a {
+    $cate_icon_w: 50px;
+    img{        
+        float: left;
+        border-radius: 3px;
+        margin-right: 8px;
+        width: $cate_icon_w;
+        height: $cate_icon_w;
+        margin-left: 3px;
+    }
     svg{
         float: left;
         border-radius: 3px;
         margin-right: 8px;
         width: 25px;
-        height: 50px;
+        height: $cate_icon_w;
         margin-left: 21px
     }
 
@@ -2408,6 +2422,7 @@ span.usetips-item {
 #home{
     width: 220px;
     height: 40px;
+    cursor: pointer;
     background-color: #ffa516;
     box-shadow: 0px 2px 9px 1px 
         rgba(0, 0, 0, 0.13);
@@ -2449,7 +2464,7 @@ span.usetips-item {
     box-shadow: 0px 0px 13px 1px 
         rgba(0, 0, 0, 0.12);
     border-radius: 16px;
-    border: solid 6px #ff5b5b;
+    border: solid 6px $bg-pink;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -2584,7 +2599,7 @@ span.usetips-item {
     margin-bottom: 8px;
 }
 .bread_crumbs i:hover{
-    color: #ff5b5b
+    color: $bg-pink
 }
 
 /** ads **/
@@ -2602,11 +2617,60 @@ span.usetips-item {
     height:250px;
 }
 .play_ad_01,.play_ad_03{
-    width:180px;
+    max-width: 160px;
+    width:160px;
     height:600px;
+    background: transparent;
 }
 .play_ad_02{
     height:90px;
+}
+.main.play01{
+    .container{
+        flex-flow: row nowrap;
+    }
+    .ads{
+        text-align: center;
+    }
+    .ads-verticle-banner{
+        width:200px;
+        height: 600px;
+    }
+    #play_ad_03{
+        margin-top: 16px;
+        width:970px;
+        height: 90px;
+    }
+    .game{
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width:calc(100% - 620px);
+        min-height: 650px;
+        margin:0 10px;
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+    .recommend{
+        width:100px;
+        .similargames_content{
+            padding:0;
+        }
+        .similargames_content .game_img {
+            padding-top: 100%;
+            font-size: 0;
+            line-height: 0;
+            height: 0;
+        }
+        .similargames_content .pop_li{
+            width:100%;
+        }
+        .similargames_content .pop_li:first-child{
+            margin-top:0;
+        }
+    }    
 }
 
 @media only screen and (max-width:1280px) {
@@ -2651,6 +2715,14 @@ span.usetips-item {
     .left, #disqus_thread {
         width: calc(100% - 304px);
     }
+    .main.play01{
+        .game{
+            width: calc(100% - 220px);
+        }
+        .ads-verticle-banner{
+            display: none;
+        }
+    }
 }
 @media only screen and (max-width:1150px) {
     .left_img .left_imga{
@@ -2689,11 +2761,25 @@ span.usetips-item {
     #mobile-menu{
         left: -100%; 
     }
+    #right_sidebar{
+        right:-100%;
+    }
+    .main.play01{
+        .game{
+            width: 100%;
+            margin:0;
+            border-radius: 0;
+        }
+        .recommend{
+            display: none;
+        }
+    }
     .similargames_title_close{
         display: block;
     }
     .game, #ads_fix{
         width: 100%;
+        left:0;
         margin-left: 0
     }
     #similargames_content .pop_li{
