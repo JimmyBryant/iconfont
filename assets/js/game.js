@@ -212,9 +212,9 @@ $(function () {
                 } else if (fullarea.msRequestFullscreen) {
                     fullarea.msRequestFullscreen();
                 }
-                $("#game").addClass("intro");
+                // $("#game").addClass("intro");
             } else {
-                $("#game").removeClass("intro")
+                // $("#game").removeClass("intro")
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
                 } else if (document.webkitCancelFullScreen) {
@@ -234,6 +234,17 @@ $(function () {
         // }
 
     });
+
+    $(document).on('fullscreenchange',function(){
+        if (document.fullscreenElement) {
+            console.log('进入全屏')
+          } else {
+            console.log('退出全屏')
+          }
+        $("#game").toggleClass("intro")
+        
+    });
+
     $(document).click(function (event) {
         $(this).children(".dropdown-content").slideUp()
         event.stopPropagation();
