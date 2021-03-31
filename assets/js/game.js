@@ -143,6 +143,7 @@ $(function () {
         insertGads("detail_ad_01", "ca-pub-2994572689024438", "7317190342");
         insertGads("detail_ad_02", "ca-pub-2994572689024438", "6004108672");
         insertGads("detail_ad_03", "ca-pub-2994572689024438", "9175947364");
+        insertGads("detail_ad_04", "ca-pub-2994572689024438", "8054437383");
 
         // 游戏页
         insertGads("play_ad_01", "ca-pub-2994572689024438", "7317190342");
