@@ -2659,6 +2659,9 @@ span.usetips-item {
             display: none;
         }
     }
+    #game-frame{
+        background:$bg-primary;
+    }
     .recommend{
         width:100px;
         .similargames_content{
