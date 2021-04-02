@@ -150,8 +150,9 @@ $(function () {
         insertGads("play_ad_02", "ca-pub-2994572689024438", "6004108672");
         insertGads("play_ad_03", "ca-pub-2994572689024438", "9175947364");
     }
-
-    renderAd(); // 展示广告
+    $(window).on('load',function(){
+        renderAd(); // 展示广告
+    })
 
     $('#mobile-right').click(function () {
         $("#mobile-menu").css("left", "0");
