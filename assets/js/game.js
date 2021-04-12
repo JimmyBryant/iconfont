@@ -44,8 +44,8 @@ if (document.body.clientWidth <= 767) {
             text: '',
             url: location.href + '/?utm_source=game&utm_medium=share',
         })
-        .then(() => console.log('Share was successful.'))
-        .catch((error) => console.log('Sharing failed', error));
+            .then(() => console.log('Share was successful.'))
+            .catch((error) => console.log('Sharing failed', error));
 
     })
 }
@@ -55,7 +55,7 @@ if (document.body.clientWidth <= 767) {
 let deferredPrompt;
 const addBtn = $('.home_add');
 const footerBtn = $('#home');
-footerBtn.css('display','none');
+footerBtn.css('display', 'none');
 var i;
 
 //浏览器触发Add to home 时会触发一个beforeinstallprompt事件，我们监听这个事件
@@ -67,7 +67,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     $(window).scroll(function (event) {
         var winPos = $(window).scrollTop();
         if (winPos > $(window).height() && document.body.clientWidth <= 1024) {
-            footerBtn.css('display','flex');
+            footerBtn.css('display', 'flex');
         }
     });
 
@@ -87,7 +87,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
             // deferredPrompt = null;
         });
     });
-    
+
 });
 
 if ('serviceWorker' in navigator) {
@@ -117,9 +117,9 @@ $(function () {
                 + '" style="display:block;" data-ad-client="'
                 + config.client
                 + '" data-ad-slot="'
-                + config.slot+'"'
-                + (config.format?' data-ad-format="'+config.format+'"':'')
-                + (config.layout?' data-ad-layout-key='+config.layout+'':'')
+                + config.slot + '"'
+                + (config.format ? ' data-ad-format="' + config.format + '"' : '')
+                + (config.layout ? ' data-ad-layout-key=' + config.layout + '' : '')
                 + '></ins>'
 
             box.appendChild(ad);
@@ -131,27 +131,31 @@ $(function () {
         // adsense js
         $('head').append($('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">'));
         (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-2994572689024438", enable_page_level_ads: true, overlays: { bottom: true } });
+        switch (location.hostname) {
+            default:
+                // 首页广告
+                // insertGads("home_ad_01", {client:"ca-pub-2994572689024438",slot: "2855201156"});
+                // insertGads("home_ad_02", {client:"ca-pub-2994572689024438",slot: "8054437383"});
+                // insertGads("home_ad_03", {client:"ca-pub-2994572689024438",slot: "6741355711"});
 
-        // 首页广告
-        // insertGads("home_ad_01", {client:"ca-pub-2994572689024438",slot: "2855201156"});
-        // insertGads("home_ad_02", {client:"ca-pub-2994572689024438",slot: "8054437383"});
-        // insertGads("home_ad_03", {client:"ca-pub-2994572689024438",slot: "6741355711"});
+                // 分类页
+                insertGads("cate_ad_01", { client: "ca-pub-2994572689024438", slot: "6741355711" });
 
-        // 分类页
-        insertGads("cate_ad_01", {client:"ca-pub-2994572689024438", slot:"6741355711"});
+                // 详情页
+                insertGads("detail_ad_01", { client: "ca-pub-2994572689024438", slot: "7317190342" });
+                insertGads("detail_ad_02", { client: "ca-pub-2994572689024438", slot: "6004108672" });
+                insertGads("detail_ad_03", { client: "ca-pub-2994572689024438", slot: "9175947364" });
+                insertGads("detail_ad_04", { client: "ca-pub-2994572689024438", slot: "4401202219", format: "rectangle"});
+                // insertGads("detail_ad_04", { client: "ca-pub-2994572689024438", slot: "4401202219", format: "fluid", layout: "-h6-7+1j-3w+4l" });
 
-        // 详情页
-        insertGads("detail_ad_01", {client:"ca-pub-2994572689024438",slot: "7317190342"});
-        insertGads("detail_ad_02", {client:"ca-pub-2994572689024438",slot: "6004108672"});
-        insertGads("detail_ad_03", {client:"ca-pub-2994572689024438",slot: "9175947364"});
-        insertGads("detail_ad_04", {client:"ca-pub-2994572689024438",slot:"4033891779",format:"fluid",layout:"-fb+5w+4e-db+86"});
+                // 游戏页
+                insertGads("play_ad_01", { client: "ca-pub-2994572689024438", slot: "7317190342" });
+                insertGads("play_ad_02", { client: "ca-pub-2994572689024438", slot: "6004108672" });
+                insertGads("play_ad_03", { client: "ca-pub-2994572689024438", slot: "9175947364" });
+        }
 
-        // 游戏页
-        insertGads("play_ad_01", {client:"ca-pub-2994572689024438",slot: "7317190342"});
-        insertGads("play_ad_02", {client:"ca-pub-2994572689024438",slot: "6004108672"});
-        insertGads("play_ad_03", {client:"ca-pub-2994572689024438",slot: "9175947364"});
     }
-    $(window).on('load',function(){
+    $(window).on('load', function () {
         renderAd(); // 展示广告
     })
 
@@ -238,9 +242,9 @@ $(function () {
 
     });
 
-    $(document).on('fullscreenchange',function(){
+    $(document).on('fullscreenchange', function () {
         $("#game").toggleClass("intro")
-        
+
     });
 
     $(document).click(function (event) {
