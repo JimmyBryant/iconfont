@@ -1258,7 +1258,7 @@ input:-internal-autofill-selected {
 }
 
 .detail .trendbox{
-    margin-top: 16px;
+    margin-top: 10px;
 }
 .detail_trend{
     background-color: #ffffff;
@@ -1268,11 +1268,11 @@ input:-internal-autofill-selected {
 }
 .infos .detail_trend{
     display: flex;
-    padding: 30px;
+    padding: 15px;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
-    margin: 0 0 20px;
+    margin: 0 0 15px;
 }
 .infos .detail_trend:before{
     content: '';
@@ -1286,9 +1286,9 @@ input:-internal-autofill-selected {
     right: -100px;
 }
 .infos .recommend_box{
-    padding-bottom: 22px;
+    padding-bottom: 15px;
     border-bottom: 1px solid #eee;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
 .left_img .left_imga{
@@ -1776,12 +1776,12 @@ input:-internal-autofill-selected {
 }
 
 .left{
-    width: 944px;
+    width: 928px;
     float: left;
 }
 .right{
-    width: 272px;
-    margin-left: 32px;
+    width: 300px;
+    margin-left: 20px;
     float: left;
     position: sticky;
     top: 16px;
@@ -2587,7 +2587,7 @@ span.usetips-item {
 }
 
 .bread_crumbs{
-    margin-top: 16px;
+    margin-top: 10px;
 }
 .bread_crumbs>span,
 .bread_crumbs i{
@@ -2617,6 +2617,7 @@ span.usetips-item {
     height:250px;
 }
 .play_ad_01,.play_ad_02{
+    margin:0 auto;
     width:160px;
     height:600px;
     background: transparent;
@@ -2632,7 +2633,7 @@ span.usetips-item {
         text-align: center;
     }
     .ads-verticle-banner{
-        width:200px;
+        width:180px;
     }
     #play_ad_03{
         margin-top: 16px;
@@ -2645,7 +2646,7 @@ span.usetips-item {
         left: 0;
         right: 0;
         bottom: 0;
-        width:calc(100% - 620px);
+        width:calc(100% - 580px);
         margin:0 10px;
         border-radius: 1rem;
         overflow: hidden;
@@ -2731,6 +2732,7 @@ span.usetips-item {
         .play_ad_01,.play_ad_02{
             width:120px;
             height:400px;
+            margin:0 auto;
             background: transparent;
         }
         #play_ad_03{
