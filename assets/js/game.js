@@ -106,7 +106,7 @@ $(function () {
      * 填充谷歌广告
      * @param id {String}
      */
-    function insertGads(id, client, slot) {
+    function insertGads(id, config) {
         const box = document.getElementById(id);
         const ad = document.createElement('div');
         if (box) {
@@ -114,12 +114,13 @@ $(function () {
 
             ad.innerHTML = '<ins class="adsbygoogle '
                 + id
-                + '" style="display:inline-block;width:100%;" data-ad-client="'
-                + client
+                + '" style="display:block;" data-ad-client="'
+                + config.client
                 + '" data-ad-slot="'
-                + slot
-                + '" ></ins>'
-
+                + config.slot+'"'
+                + (config.format?' data-ad-format="'+config.format+'"':'')
+                + (config.layout?' data-ad-layout-key='+config.layout+'':'')
+                + '></ins>'
 
             box.appendChild(ad);
             (adsbygoogle = window.adsbygoogle || []).push({});
@@ -132,23 +133,23 @@ $(function () {
         (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-2994572689024438", enable_page_level_ads: true, overlays: { bottom: true } });
 
         // 首页广告
-        insertGads("home_ad_01", "ca-pub-2994572689024438", "2855201156");
-        insertGads("home_ad_02", "ca-pub-2994572689024438", "8054437383");
-        insertGads("home_ad_03", "ca-pub-2994572689024438", "6741355711");
+        // insertGads("home_ad_01", {client:"ca-pub-2994572689024438",slot: "2855201156"});
+        // insertGads("home_ad_02", {client:"ca-pub-2994572689024438",slot: "8054437383"});
+        // insertGads("home_ad_03", {client:"ca-pub-2994572689024438",slot: "6741355711"});
 
         // 分类页
-        insertGads("cate_ad_01", "ca-pub-2994572689024438", "6741355711");
+        insertGads("cate_ad_01", {client:"ca-pub-2994572689024438", slot:"6741355711"});
 
         // 详情页
-        insertGads("detail_ad_01", "ca-pub-2994572689024438", "7317190342");
-        insertGads("detail_ad_02", "ca-pub-2994572689024438", "6004108672");
-        insertGads("detail_ad_03", "ca-pub-2994572689024438", "9175947364");
-        insertGads("detail_ad_04", "ca-pub-2994572689024438", "8054437383");
+        insertGads("detail_ad_01", {client:"ca-pub-2994572689024438",slot: "7317190342"});
+        insertGads("detail_ad_02", {client:"ca-pub-2994572689024438",slot: "6004108672"});
+        insertGads("detail_ad_03", {client:"ca-pub-2994572689024438",slot: "9175947364"});
+        insertGads("detail_ad_04", {client:"ca-pub-2994572689024438",slot:"4033891779",format:"fluid",layout:"-fb+5w+4e-db+86"});
 
         // 游戏页
-        insertGads("play_ad_01", "ca-pub-2994572689024438", "7317190342");
-        insertGads("play_ad_02", "ca-pub-2994572689024438", "6004108672");
-        insertGads("play_ad_03", "ca-pub-2994572689024438", "9175947364");
+        insertGads("play_ad_01", {client:"ca-pub-2994572689024438",slot: "7317190342"});
+        insertGads("play_ad_02", {client:"ca-pub-2994572689024438",slot: "6004108672"});
+        insertGads("play_ad_03", {client:"ca-pub-2994572689024438",slot: "9175947364"});
     }
     $(window).on('load',function(){
         renderAd(); // 展示广告
@@ -238,11 +239,6 @@ $(function () {
     });
 
     $(document).on('fullscreenchange',function(){
-        if (document.fullscreenElement) {
-            console.log('进入全屏')
-          } else {
-            console.log('退出全屏')
-          }
         $("#game").toggleClass("intro")
         
     });
