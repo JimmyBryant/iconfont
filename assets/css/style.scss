@@ -1923,6 +1923,7 @@ input:-internal-autofill-selected {
 }
 .game_innerbox{
     position: absolute;
+    width: 100%;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
@@ -2623,6 +2624,7 @@ span.usetips-item {
     background: transparent;
 }
 .play_ad_03{
+    margin:0 auto;
     height:90px;
 }
 .main.play01{
@@ -2637,7 +2639,6 @@ span.usetips-item {
     }
     #play_ad_03{
         margin-top: 16px;
-        width:970px;
         height: 90px;
     }
     .game{
@@ -2735,12 +2736,6 @@ span.usetips-item {
             margin:0 auto;
             background: transparent;
         }
-        #play_ad_03{
-            width:728px;
-        }
-        .play_ad_03{
-            width:100%;
-        }
         .recommend{
             width:80px;
             .similargames_content .pop_li{
@@ -2749,7 +2744,7 @@ span.usetips-item {
         }
         .game{
             width: calc(100% - 460px);
-            height: calc(100vh - 84px);
+            // height: calc(100vh - 84px);
             min-height: 420px;
         }
     }
