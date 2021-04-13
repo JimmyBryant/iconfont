@@ -1611,7 +1611,7 @@ input:-internal-autofill-selected {
     color: #ff3333;
 }*/
 .detail .lists_cate{
-    margin-top: 12px;
+    margin-top: $normal;
 }
 .detail .lists_li{
     /*margin-bottom: 8px;*/
@@ -2616,14 +2616,16 @@ span.usetips-item {
 .detail_ad_02{
     height: 90px;
 }
+#detail_ad_03{
+    margin:$medium auto;
+}
 .detail_ad_03{
-    width:100%;
+    width:100%;    
     height:250px;
 }
 .play_ad_01,.play_ad_02{
     margin:0 auto;
     width:160px;
-    height:600px;
     background: transparent;
 }
 .play_ad_03{
@@ -2733,9 +2735,6 @@ span.usetips-item {
         .ads-verticle-banner{width:140px;}
         .play_ad_01,.play_ad_02{
             width:120px;
-            height:400px;
-            margin:0 auto;
-            background: transparent;
         }
         .recommend{
             width:80px;

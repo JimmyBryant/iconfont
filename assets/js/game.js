@@ -102,30 +102,35 @@ if ('serviceWorker' in navigator) {
 $(function () {
     // lazyload images
     lazyload();
+
+    // insert google fonts
+    const fontUrl = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto+Slab:wght@700&family=Roboto:wght@500&display=swap';
+    $('head').append($('<link rel="stylesheet">').attr('href',fontUrl));
+
     /**
      * 填充谷歌广告
      * @param id {String}
      */
     function insertGads(id, config) {
         const box = document.getElementById(id);
-        const ad = document.createElement('div');
+
         if (box) {
-            ad.style.cssText = 'text-align:center;';
-
-            ad.innerHTML = '<ins class="adsbygoogle '
-                + id
-                + '" style="display:block;" data-ad-client="'
-                + config.client
-                + '" data-ad-slot="'
-                + config.slot + '"'
-                + (config.format ? ' data-ad-format="' + config.format + '"' : '')
-                + (config.layout ? ' data-ad-layout-key=' + config.layout + '' : '')
-                + '></ins>'
-
+            const ad = document.createElement('ins');
+            ad.style.cssText = 'display:block;text-align:center;';
+            ad.className = 'adsbygoogle '+id;
+            ad.setAttribute('data-ad-client',config.client);
+            ad.setAttribute('data-ad-slot',config.slot);
+            if(config.format){
+                ad.setAttribute('data-ad-format',config.format)
+            }
+            if(config.layoutKey){
+                ad.setAttribute('data-ad-layout-key',config.layoutKey)
+            }
             box.appendChild(ad);
             (adsbygoogle = window.adsbygoogle || []).push({});
         }
     }
+    
 
     function renderAd() {
         // adsense js
@@ -144,13 +149,13 @@ $(function () {
                 // 详情页
                 insertGads("detail_ad_01", { client: "ca-pub-2994572689024438", slot: "7317190342" });
                 insertGads("detail_ad_02", { client: "ca-pub-2994572689024438", slot: "6004108672" });
-                insertGads("detail_ad_03", { client: "ca-pub-2994572689024438", slot: "9175947364" });
+                insertGads("detail_ad_03", { client: "ca-pub-2994572689024438", slot: "9175947364"});
                 insertGads("detail_ad_04", { client: "ca-pub-2994572689024438", slot: "4401202219", format: "rectangle"});
-                // insertGads("detail_ad_04", { client: "ca-pub-2994572689024438", slot: "4401202219", format: "fluid", layout: "-h6-7+1j-3w+4l" });
+                // insertGads("detail_ad_04", { client: "ca-pub-2994572689024438", slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                 // 游戏页
-                insertGads("play_ad_01", { client: "ca-pub-2994572689024438", slot: "7317190342" });
-                insertGads("play_ad_02", { client: "ca-pub-2994572689024438", slot: "6004108672" });
+                insertGads("play_ad_01", { client: "ca-pub-2994572689024438", slot: "7317190342", format:'auto'});
+                insertGads("play_ad_02", { client: "ca-pub-2994572689024438", slot: "6004108672", format:'auto' });
                 insertGads("play_ad_03", { client: "ca-pub-2994572689024438", slot: "9175947364" });
         }
 
