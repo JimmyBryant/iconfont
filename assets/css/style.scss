@@ -2630,7 +2630,7 @@ span.usetips-item {
 }
 .play_ad_03{
     margin:0 auto;
-    height:90px;
+    height: 90px;
 }
 .main.play01{
     .container{
@@ -2643,8 +2643,7 @@ span.usetips-item {
         width:180px;
     }
     #play_ad_03{
-        margin-top: 16px;
-        height: 90px;
+        margin:$medium $medium 0;
     }
     .game{
         position: relative;
