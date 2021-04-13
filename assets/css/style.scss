@@ -9,6 +9,10 @@ $color-primary:#202020;
 $color-secondary:#FFF;
 $color-secondary-variant:#FAFAFA;
 
+$small:4px;
+$normal:8px;
+$medium:16px;
+$large:32px;
 
 html,body{
     overflow-x:hidden;
@@ -118,8 +122,7 @@ body{
 .wrapper{
     max-width: $containerWidth;
     margin: 0 auto;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 0 $medium;
     box-sizing: border-box;
 }
 .icon_menu,.nav_li .icon_favorite,.icon_clock,.nav_li .icon_hot{
@@ -1268,11 +1271,11 @@ input:-internal-autofill-selected {
 }
 .infos .detail_trend{
     display: flex;
-    padding: 15px;
+    padding: $medium;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
-    margin: 0 0 15px;
+    margin: 0 0 $medium;
 }
 .infos .detail_trend:before{
     content: '';
@@ -1517,7 +1520,7 @@ input:-internal-autofill-selected {
     padding: 20px;
 }
 .detail .trendbox .trendbox{
-    margin-top: 4px;
+    margin-top: 0;
 }
 #ads2{
     display: none;
@@ -2687,6 +2690,7 @@ span.usetips-item {
 }
 
 @media only screen and (max-width:1280px) {
+    .dots{width:90%;}
     .srcoll_box{
         overflow-x: scroll;
         -ms-overflow-style: none;
@@ -2719,14 +2723,11 @@ span.usetips-item {
     .srcoll_box::-webkit-scrollbar {
         width: 0 !important 
     }
-    .list .recommend_inner li{
-        /*width: 25%;*/
-    }
     .game_box .banner_box {
         padding: 0 16px;
     }
     .left, #disqus_thread {
-        width: calc(100% - 304px);
+        width: calc(100% - 320px);
     }
     .main.play01{
         .ads-verticle-banner{width:140px;}
