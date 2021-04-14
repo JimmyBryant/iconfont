@@ -2795,11 +2795,11 @@ span.usetips-item {
     .main.play01{
         .game{
             width: 100%;
-            height: 100vh;
+            height: 80vh;
             margin:0;
             border-radius: 0;
             #game_tool_bar{
-                display: none;
+                display: flex!important;
             }
         }
         .ads-verticle-banner,
@@ -2808,9 +2808,13 @@ span.usetips-item {
         }
         #play_ad_02{
             display:block;
-            width:100%;height:90px;
+            width:100%;
+            height:120px;
         }
-        .play_ad_02{width:728px;height:90px;}
+        .play_ad_02{
+            width:100%;
+            height:120px;
+        }
     }
     .similargames_title_close{
         display: block;
@@ -2967,6 +2971,12 @@ span.usetips-item {
     }
 }
 @media only screen and (max-width:780px) {
+    .main.play01{
+        #play_ad_02,.play_ad_02 {
+            width: 100%;
+            height: 120px;
+        }
+    } 
     .cate_box{
         flex-direction: column;
         align-items: baseline;
