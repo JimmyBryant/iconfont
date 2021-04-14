@@ -130,29 +130,30 @@ $(function () {
 
     function renderAd() {
         // adsense js
+        var ad_client = "ca-pub-2994572689024438";
         $('head').append($('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">'));
-        (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-2994572689024438", enable_page_level_ads: true, overlays: { bottom: true } });
+        (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: ad_client, enable_page_level_ads: true, overlays: { bottom: true } });
         switch (location.hostname) {
             default:
                 // 首页广告
-                // insertGads("home_ad_01", {client:"ca-pub-2994572689024438",slot: "2855201156"});
-                // insertGads("home_ad_02", {client:"ca-pub-2994572689024438",slot: "8054437383"});
-                // insertGads("home_ad_03", {client:"ca-pub-2994572689024438",slot: "6741355711"});
+                // insertGads("home_ad_01", {client:ad_client,slot: "2855201156"});
+                // insertGads("home_ad_02", {client:ad_client,slot: "8054437383"});
+                // insertGads("home_ad_03", {client:ad_client,slot: "6741355711"});
 
                 // 分类页
-                insertGads("cate_ad_01", { client: "ca-pub-2994572689024438", slot: "6741355711" });
+                insertGads("cate_ad_01", { client: ad_client, slot: "6741355711" });
 
                 // 详情页
-                insertGads("detail_ad_01", { client: "ca-pub-2994572689024438", slot: "7317190342" });
-                insertGads("detail_ad_02", { client: "ca-pub-2994572689024438", slot: "6004108672" });
-                insertGads("detail_ad_03", { client: "ca-pub-2994572689024438", slot: "9175947364" });
-                insertGads("detail_ad_04", { client: "ca-pub-2994572689024438", slot: "4401202219", format: "rectangle" });
-                // insertGads("detail_ad_04", { client: "ca-pub-2994572689024438", slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
+                insertGads("detail_ad_01", { client: ad_client, slot: "7317190342" });
+                insertGads("detail_ad_02", { client: ad_client, slot: "6004108672" });
+                insertGads("detail_ad_03", { client: ad_client, slot: "9175947364" });
+                insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "rectangle" });
+                // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                 // 游戏页
-                insertGads("play_ad_01", { client: "ca-pub-2994572689024438", slot: "7317190342", format: 'auto' });
-                insertGads("play_ad_02", { client: "ca-pub-2994572689024438", slot: "6004108672", format: 'auto' });
-                insertGads("play_ad_03", { client: "ca-pub-2994572689024438", slot: "9175947364" });
+                insertGads("play_ad_01", { client: ad_client, slot: "7317190342", format: 'auto' });
+                insertGads("play_ad_02", { client: ad_client, slot: "6004108672", format: 'auto' });
+                insertGads("play_ad_03", { client: ad_client, slot: "9175947364" });
         }
 
     }
@@ -160,6 +161,13 @@ $(function () {
         // 加载 google fonts
         const fontUrl = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto+Slab:wght@700&family=Roboto:wght@500&display=swap';
         $('head').append($('<link rel="stylesheet">').attr('href', fontUrl));
+        // 加载iconfont js
+        $('body').append($('<script src="https://cdn.jsdelivr.net/gh/JimmyBryant/iconfont@latest/iconfont.js">'));
+        // 设置game-audio
+        if(document.querySelector('#game_audio>iframe')){
+            $('#game_audio>iframe').attr('src',$('#game_audio>iframe').data('src'));
+        }
+
         // 展示广告
         renderAd(); 
         // 展示cookie隐私政策
@@ -222,46 +230,6 @@ $(function () {
 
         var numItems1 = $(".nav_li .fav_num").text();
         $(".fav_num").text(parseInt(numItems1) - 1);
-
-    });
-
-    // 点击全屏按钮
-    $(document).on("click", ".fullscreen", function () {
-        let fullarea = document.getElementById('game');
-        // if (hasMove1 != true) {
-        if (typeof (document.fullscreenElement) != 'undefined') {
-            // alert(document.fullscreenElement);
-            if (document.fullscreenElement == null) {
-                if (fullarea.requestFullscreen) {
-                    fullarea.requestFullscreen();
-                } else if (fullarea.webkitRequestFullScreen) {
-                    fullarea.webkitRequestFullScreen();
-                } else if (fullarea.mozRequestFullScreen) {
-                    fullarea.mozRequestFullScreen();
-                } else if (fullarea.msRequestFullscreen) {
-                    fullarea.msRequestFullscreen();
-                }
-                // $("#game").addClass("intro");
-            } else {
-                // $("#game").removeClass("intro")
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitCancelFullScreen) {
-                    document.webkitCancelFullScreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        }
-        $(".icon_full").toggle();
-        $(".icon_nimi").toggle();
-        // $("#game").toggleClass("intro").toggleClass("intros");
-    });
-
-    $(document).on('fullscreenchange', function () {
-        $("#game").toggleClass("intro")
 
     });
 

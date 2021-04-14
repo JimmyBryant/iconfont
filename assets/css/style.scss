@@ -3203,7 +3203,7 @@ span.usetips-item {
     }
 
     .infos .trendbox{
-        margin-top: 16px;
+        margin-top: $medium;
     }
     .infos .detail_trend{
         padding: 0;
@@ -3408,6 +3408,7 @@ span.usetips-item {
 
 }
 @media only screen and (max-width:728px) {
+    .bread_crumbs,.detail .trendbox{margin-top:$normal;}
     .pop_games{
         margin-right: -16px;
     }
