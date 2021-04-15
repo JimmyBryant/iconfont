@@ -819,7 +819,7 @@ input:-internal-autofill-selected {
     padding-right: 16px;
 }
 .trendbox{
-    margin-top: 30px;
+    margin-top: $large;
 }
 .top,.hot{
     position: relative;
@@ -2967,7 +2967,7 @@ span.usetips-item {
 }
 @media only screen and (max-width:900px) {
     .top_games .pop_li{
-        width: 16.666666%
+        width: 25%
     }
 }
 @media only screen and (max-width:780px) {
@@ -3408,6 +3408,9 @@ span.usetips-item {
 
 }
 @media only screen and (max-width:728px) {
+    .trendbox{
+        margin-top: $medium;
+    }
     .bread_crumbs,.detail .trendbox{margin-top:$normal;}
     .pop_games{
         margin-right: -16px;

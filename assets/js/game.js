@@ -100,9 +100,6 @@ if ('serviceWorker' in navigator) {
  * do somethings when document ready 
  */
 $(function () {
-    // lazyload images
-    lazyload();
-
     /**
      * 填充谷歌广告
      * @param id {String}
@@ -167,9 +164,13 @@ $(function () {
         if(document.querySelector('#game_audio>iframe')){
             $('#game_audio>iframe').attr('src',$('#game_audio>iframe').data('src'));
         }
+        // 加载lazyload js
+        // lazyload images
+        lazyload();
 
         // 展示广告
-        renderAd(); 
+        renderAd();
+
         // 展示cookie隐私政策
         var useAgree = document.getElementById('useAgree');
         var userConsent = document.getElementById('userConsent');
