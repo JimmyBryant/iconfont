@@ -2663,6 +2663,7 @@ span.usetips-item {
         #game_tool_bar{
             position: absolute;
             background:transparent;
+            z-index:199;
         }
     }
     .game.intro{
