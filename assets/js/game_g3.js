@@ -14,6 +14,18 @@ function getCookie(name) {
     }
     return "";
 }
+/**
+ * 判断浏览器是否支持webp
+ * @returns {Boolean}
+ */
+var isSupportWebp = function () {
+    try {
+        return document.createElement('canvas').toDataURL('image/webp', 0.5).indexOf('data:image/webp') === 0;
+    } catch (err) {
+        return false;
+    }
+}
+
 // window.onload = function () {
 //     var useAgree = document.getElementById('useAgree');
 //     var userConsent = document.getElementById('userConsent');
@@ -161,7 +173,7 @@ s.onload = function () {
             // 加载 google fonts
             const fontUrl = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto+Slab:wght@700&family=Roboto:wght@500&display=swap';
             $('head').append($('<link rel="stylesheet">').attr('href', fontUrl));
-            
+
             // 加载iconfont js
             $('body').append($('<script src="https://cdn.jsdelivr.net/gh/JimmyBryant/iconfont@latest/iconfont.js">'));
 
@@ -175,6 +187,11 @@ s.onload = function () {
             s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
             document.body.appendChild(s);
             s.onload = function () {
+                if(!isSupportWebp){ 
+                    $('img.lazyload').each(function(i,item){
+                        $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
+                    })
+                }
                 lazyload();             // lazyload images
             };
 
