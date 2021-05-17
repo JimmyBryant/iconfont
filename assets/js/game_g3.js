@@ -187,7 +187,7 @@ s.onload = function () {
             s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
             document.body.appendChild(s);
             s.onload = function () {
-                if(!isSupportWebp){ 
+                if(!isSupportWebp()){ 
                     $('img.lazyload').each(function(i,item){
                         $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
                     })
