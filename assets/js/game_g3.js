@@ -365,6 +365,4 @@ s.onload = function () {
     });
 }
 // load jquery
-window.onload = function () {
-    document.body.appendChild(s);
-}
+document.body.appendChild(s);
