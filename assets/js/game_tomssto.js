@@ -361,6 +361,5 @@ s.onload = function () {
     });
 }
 
-window.onload = function () {
-    document.body.appendChild(s);
-}
+// append jquery
+document.body.appendChild(s);
