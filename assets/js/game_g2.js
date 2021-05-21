@@ -323,6 +323,5 @@ s.onload = function () {
 
     });
 }
-window.onload = function () {
-    document.body.appendChild(s);
-}
+
+document.body.appendChild(s);
