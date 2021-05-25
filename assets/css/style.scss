@@ -14,6 +14,7 @@ $normal:8px;
 $medium:16px;
 $large:32px;
 
+/**/
 html,body{
     overflow-x:hidden;
     -webkit-overflow-scrolling : touch;
@@ -878,6 +879,39 @@ input:-internal-autofill-selected {
     padding-top: 100%;
     position: relative;
     overflow: hidden;
+    .flag{
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        right: 0;
+        height: 28px;
+        top: 8px;
+        text-transform: uppercase;
+        padding: 0 8px 0 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;   
+        .icon{
+            background: #fff;
+            position: absolute;
+            top: 0;        
+            left: 0;
+            display: flex;
+            box-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
+            border-radius: 0 14px 14px 0;
+            padding-right: 8px;            
+        } 
+        .svg{
+            box-sizing: border-box;
+            fill: $bg-pink;
+            width: 18px;
+            height: 28px;
+            position: relative;
+            padding: 2px 0 2px 2px;
+            z-index: 2;        
+        }
+    }
+  
 }
 
 .game_img img{
