@@ -49,9 +49,9 @@ var isSupportWebp = function () {
 //  $(this).toggleClass("icon_up")
 // })
 var jq_src = 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
-var s = document.createElement('script');
-s.src = jq_src;
-s.onload = function () {
+var jq_s = document.createElement('script');
+jq_s.src = jq_src;
+jq_s.onload = function () {
     if (document.body.clientWidth <= 767) {
         $("#share").click(function () {
             navigator.share({
@@ -364,5 +364,20 @@ s.onload = function () {
         initPage();
     });
 }
-// load jquery
-document.body.appendChild(s);
+
+// do something on pageLoaded
+function onPageLoaded(callback){
+    if(document.readyState=='complete'){
+        callback&&callback();
+    }else{
+        window.addEventListener('load',function(){
+            callback&&callback();
+        })
+    }
+}
+
+onPageLoaded(function () {
+    // load jquery
+    document.body.appendChild(jq_s);
+})
+
