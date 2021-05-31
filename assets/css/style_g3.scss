@@ -1048,22 +1048,21 @@ input:-internal-autofill-selected {
 }
 #mobile-right{
     position: absolute;
-    /*display: none;*/
+    display: none;
     left: 0;
     top: 0;
-    width: 50px;
-    height: 50px;
-    background-color: #000;
+    width: 40px;
+    height: 40px;
+    background-color:$bg-pink;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     transition: left .2s ease-out;
     z-index: 10;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.3);
-    border-radius: 4px;
 }
 .icon_bread{
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     fill: #fff;
     transform: translateX(-1px);
 }
@@ -1082,8 +1081,9 @@ input:-internal-autofill-selected {
 }
 #mobile-menu{
     position: absolute;
+    display: none;
     top: 0;
-    /*left: -100%;*/
+    left: -100%;
     left: 0;
     width: 200px;
     height: 100%;
@@ -1101,7 +1101,6 @@ input:-internal-autofill-selected {
     background:$color-primary;
     .top-wrapper{
         height: 202px;
-        margin-bottom:20px;
     }
 }
 
@@ -1135,18 +1134,27 @@ input:-internal-autofill-selected {
 .similargames_title_logo{
     display: block;
     width: 100%;
+    height: 64px;
     background: #FFF;
+    >img{
+        max-height: 100%;
+        width: auto;
+        max-width: 100%;
+        padding: $normal;
+        box-sizing: border-box;
+    }
 }
 .similargames_title{
     background-color:$bg-primary;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 12px 6px 0;
+    padding: $medium $small;
     .icon_button{
         cursor: pointer;
+        margin:0 $medium;
     }
     .iconlinears{
         width: 28px;
@@ -1187,7 +1195,7 @@ input:-internal-autofill-selected {
 .similargames_title_close .icon_close{
     width: 30px;
     height: 30px;
-    fill: #fff;
+    fill: $bg-primary;
 }
 .similargames_content{
     /*background-color: #00547c;*/
@@ -2844,15 +2852,6 @@ span.usetips-item {
         .recommend{
             display: none;
         }
-        #play_ad_02{
-            display:block;
-            width:100%;
-            height:120px;
-        }
-        .play_ad_02{
-            width:100%;
-            height:120px;
-        }
     }
     .similargames_title_close{
         display: block;
@@ -3009,12 +3008,6 @@ span.usetips-item {
     }
 }
 @media only screen and (max-width:780px) {
-    .main.play01{
-        #play_ad_02,.play_ad_02 {
-            width: 100%;
-            height: 120px;
-        }
-    } 
     .cate_box{
         flex-direction: column;
         align-items: baseline;
@@ -3162,7 +3155,46 @@ span.usetips-item {
     .list_play_show li:nth-child(2){
         margin-top: 8px;
     }
-
+    html.play01,body.play01{
+        height:100%;
+        overflow:hidden;
+    }
+    .main.play01{
+        height:100%;
+        overflow:hidden;
+        .container{
+            height:100%;
+            overflow:hidden;
+        }
+        #mobile-right,#mobile-menu{
+            display:block;
+        } 
+        #mobile-menu .similargames_title{
+            justify-content: flex-start;
+            border-bottom: 1px solid #333;
+        }       
+        .game{
+            height:100%;
+            #game_tool_bar{
+                display: none!important;
+            }
+        }
+        #play_ad_02{
+            display:block;
+            width:100%;
+            height:100px;
+            background: $bg-primary;
+        }
+        #play_ad_03{
+            margin:$medium $small 0;
+        }
+        .wrapper .trendbox{
+            display:none;
+        }
+    } 
+    footer,.copyright{
+        display:none;
+    }
     footer{
         height: auto;
         padding: 24px 0;
@@ -3814,7 +3846,7 @@ span.usetips-item {
         margin-right: 2px;
     }
     .game_innerbox{
-        top: 57%;
+
     }
     .paging a{
         height: 32px;
