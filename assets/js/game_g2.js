@@ -1,3 +1,4 @@
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function setCookie(name, value, exdays) {
     var date = new Date();
@@ -132,8 +133,13 @@ s.onload = function () {
                     // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                     // 游戏页
-                    insertGads("play_ad_01", { client: ad_client, slot: "2567980443", format: 'auto' });
-                    insertGads("play_ad_02", { client: ad_client, slot: "6315653769", format: 'auto' });
+                    if(isMobile){
+                        insertGads("play_m_ad_01", { client: ad_client, slot: "2567980443", format: 'auto' });
+                    }else{
+                        insertGads("play_ad_01", { client: ad_client, slot: "2567980443", format: 'auto' });
+                    }
+
+                    insertGads("play_ad_02", { client: ad_client, slot: "6315653769", format: isMobile?'':'auto' });
                     insertGads("play_ad_03", { client: ad_client, slot: "2376408758" });
             }
 
@@ -193,7 +199,7 @@ s.onload = function () {
                 $(".hd-menu-box").slideToggle();
             });
 
-            $(document).on("click", ".icon_close", function () {
+            $(document).on("click", ".pop_li_box>.icon_close", function () {
                 $(this).parent().parent().remove();
                 var deletext = $(this).siblings(".pop_item").children(".pop_name").text();
                 localStorage.removeItem(deletext);
