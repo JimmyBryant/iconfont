@@ -1051,8 +1051,8 @@ input:-internal-autofill-selected {
     display: none;
     left: 0;
     top: 0;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-color:$bg-pink;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -2735,7 +2735,73 @@ span.usetips-item {
         }
     }    
 }
-
+@media only screen and (max-width:1366px) {
+    html.m-root-play01,body.m-root-play01{
+        height:100%;
+        overflow:hidden;
+        .header{
+            display:none;
+        }
+    }
+    .m-root-play01 .main.play01{
+        height:100%;
+        overflow:hidden;
+        .container{
+            margin:0;
+            padding:0;
+            height:100%;
+            overflow:hidden;
+            flex-direction: column;
+            .ads-verticle-banner,
+            .recommend{
+                display: none;
+            }
+        }
+        #mobile-right,#mobile-menu{
+            display:block;
+        }       
+        #mobile-menu{
+            width:100%;
+            left:-100%;
+        }
+        .similargames_title_close{
+            display: block;
+        }
+        #mobile-menu .similargames_title{
+            justify-content: flex-start;
+            border-bottom: 1px solid #333;
+        }   
+        .similargames_content .pop_li{
+            width:25%;
+        }    
+        .game{
+            width:100%;
+            height:100%;
+            margin:0;
+            border-radius:0;
+            #game_tool_bar{
+                display: none!important;
+            }
+        }
+        #play_ad_02,.play_ad_02{
+            display:block;
+            width:100%;
+            height:120px;
+            background: $bg-primary;
+        }
+        #play_ad_03{
+            margin:$medium $small 0;
+        }
+        #play_m_ad_01 .play_m_ad_01{
+            display:block;
+            margin: 0!important;
+            padding:0 !important;
+        }
+        .wrapper .trendbox{
+            display:none;
+        }
+    }
+}
 @media only screen and (max-width:1280px) {
     .dots{width:90%;}
     .srcoll_box{
@@ -2902,8 +2968,7 @@ span.usetips-item {
     .list .listbox,
     .empty{
         margin-top: 0
-    }
-
+    } 
 }
 @media only screen and (max-width:1023px) {
     .left, .right, #disqus_thread{
@@ -3155,9 +3220,17 @@ span.usetips-item {
     .list_play_show li:nth-child(2){
         margin-top: 8px;
     }
-    html.play01,body.play01{
+    html.root-play01,body.root-play01{
         height:100%;
         overflow:hidden;
+    }
+    .m-root-play01 .main.play01{
+        #play_ad_02,.play_ad_02{
+            display:block;
+            width:100%;
+            height:90px;
+            background: $bg-primary;
+        }
     }
     .main.play01{
         height:100%;
@@ -3169,6 +3242,10 @@ span.usetips-item {
         #mobile-right,#mobile-menu{
             display:block;
         } 
+        #mobile-right{
+            width:40px;
+            height:40px;
+        }
         #mobile-menu .similargames_title{
             justify-content: flex-start;
             border-bottom: 1px solid #333;
@@ -3178,12 +3255,6 @@ span.usetips-item {
             #game_tool_bar{
                 display: none!important;
             }
-        }
-        #play_ad_02,.play_ad_02{
-            display:block;
-            width:100%;
-            height:100px;
-            background: $bg-primary;
         }
         #play_ad_03{
             margin:$medium $small 0;
