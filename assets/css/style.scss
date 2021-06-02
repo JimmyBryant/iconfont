@@ -8,13 +8,12 @@ $bg-secondary-variant:#FAFAFA;
 $color-primary:#202020;
 $color-secondary:#FFF;
 $color-secondary-variant:#FAFAFA;
-
+$header-height:64px;
 $small:4px;
 $normal:8px;
 $medium:16px;
 $large:32px;
 
-/**/
 html,body{
     overflow-x:hidden;
     -webkit-overflow-scrolling : touch;
@@ -226,7 +225,7 @@ body{
 }*/
 
 .header{
-    height: 64px;
+    height: $header-height;
     position: relative;
     /*position: absolute;*/
     width: 100%;    
@@ -247,9 +246,11 @@ body{
 .logo{
     float: left;
     width: 172px;
-    height:64px;
+    height:$header-height;
+    display: flex;
+    align-items: center;
     img{
-        max-height: 100%;
+        max-height:100%;
     }
 }
 .nav-ul{
@@ -911,7 +912,6 @@ input:-internal-autofill-selected {
             z-index: 2;        
         }
     }
-  
 }
 
 .game_img img{
@@ -1048,22 +1048,21 @@ input:-internal-autofill-selected {
 }
 #mobile-right{
     position: absolute;
-    /*display: none;*/
+    display: none;
     left: 0;
     top: 0;
     width: 50px;
     height: 50px;
-    background-color: #000;
+    background-color:$bg-pink;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     transition: left .2s ease-out;
     z-index: 10;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.3);
-    border-radius: 4px;
 }
 .icon_bread{
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     fill: #fff;
     transform: translateX(-1px);
 }
@@ -1082,8 +1081,9 @@ input:-internal-autofill-selected {
 }
 #mobile-menu{
     position: absolute;
+    display: none;
     top: 0;
-    /*left: -100%;*/
+    left: -100%;
     left: 0;
     width: 200px;
     height: 100%;
@@ -1101,7 +1101,6 @@ input:-internal-autofill-selected {
     background:$color-primary;
     .top-wrapper{
         height: 202px;
-        margin-bottom:20px;
     }
 }
 
@@ -1135,18 +1134,27 @@ input:-internal-autofill-selected {
 .similargames_title_logo{
     display: block;
     width: 100%;
+    height: 64px;
     background: #FFF;
+    >img{
+        max-height: 100%;
+        width: auto;
+        max-width: 100%;
+        padding: $normal;
+        box-sizing: border-box;
+    }
 }
 .similargames_title{
     background-color:$bg-primary;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 12px 6px 0;
+    padding: $medium $small;
     .icon_button{
         cursor: pointer;
+        margin:0 $medium;
     }
     .iconlinears{
         width: 28px;
@@ -1187,7 +1195,7 @@ input:-internal-autofill-selected {
 .similargames_title_close .icon_close{
     width: 30px;
     height: 30px;
-    fill: #fff;
+    fill: $bg-primary;
 }
 .similargames_content{
     /*background-color: #00547c;*/
@@ -1968,7 +1976,6 @@ input:-internal-autofill-selected {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    z-index: 99;
 }
 #joy_start{
     text-align: center;
@@ -2697,7 +2704,6 @@ span.usetips-item {
         #game_tool_bar{
             position: absolute;
             background:transparent;
-            z-index:199;
         }
     }
     .game.intro{
@@ -2729,7 +2735,77 @@ span.usetips-item {
         }
     }    
 }
-
+@media only screen and (max-width:1366px) {
+    html.m-root-play01,body.m-root-play01{
+        height:100%;
+        overflow:hidden;
+        .header{
+            display:none;
+        }
+    }
+    .m-root-play01 .main.play01{
+        height:100%;
+        overflow:hidden;
+        .container{
+            margin:0;
+            padding:0;
+            height:100%;
+            overflow:hidden;
+            flex-direction: column;
+            .ads-verticle-banner,
+            .recommend{
+                display: none;
+            }
+        }
+        #mobile-right,#mobile-menu{
+            display:block;
+        }       
+        #mobile-menu{
+            width:100%;
+            left:-100%;
+        }
+        .similargames_title_close{
+            display: block;
+        }
+        #mobile-menu .similargames_title{
+            justify-content: flex-start;
+            border-bottom: 1px solid #333;
+        }   
+        ul.similargames_content{
+            margin-right:-7px;
+            .pop_li{
+                padding-right:7px;
+                width:25%;
+            }
+        }     
+        .game{
+            width:100%;
+            height:100%;
+            margin:0;
+            border-radius:0;
+            #game_tool_bar{
+                display: none!important;
+            }
+        }
+        #play_ad_02,.play_ad_02{
+            display:block;
+            width:100%;
+            height:120px;
+            background: $bg-primary;
+        }
+        #play_ad_03{
+            margin:$medium $small 0;
+        }
+        #play_m_ad_01 .play_m_ad_01{
+            display:block;
+            margin: 0!important;
+            padding:0 !important;
+        }
+        .wrapper .trendbox{
+            display:none;
+        }
+    }
+}
 @media only screen and (max-width:1280px) {
     .dots{width:90%;}
     .srcoll_box{
@@ -2846,15 +2922,6 @@ span.usetips-item {
         .recommend{
             display: none;
         }
-        #play_ad_02{
-            display:block;
-            width:100%;
-            height:120px;
-        }
-        .play_ad_02{
-            width:100%;
-            height:120px;
-        }
     }
     .similargames_title_close{
         display: block;
@@ -2905,8 +2972,7 @@ span.usetips-item {
     .list .listbox,
     .empty{
         margin-top: 0
-    }
-
+    } 
 }
 @media only screen and (max-width:1023px) {
     .left, .right, #disqus_thread{
@@ -3011,12 +3077,6 @@ span.usetips-item {
     }
 }
 @media only screen and (max-width:780px) {
-    .main.play01{
-        #play_ad_02,.play_ad_02 {
-            width: 100%;
-            height: 120px;
-        }
-    } 
     .cate_box{
         flex-direction: column;
         align-items: baseline;
@@ -3096,7 +3156,7 @@ span.usetips-item {
     }
     .logo {
         width: 129px;
-        height:48px;
+        height: 48px;
     }
     .icon_menu{
         height: 48px;
@@ -3164,7 +3224,65 @@ span.usetips-item {
     .list_play_show li:nth-child(2){
         margin-top: 8px;
     }
-
+    html.root-play01,body.root-play01{
+        height:100%;
+        overflow:hidden;
+    }
+    .m-root-play01 .main.play01{
+        ul.similargames_content{
+            margin-right:-7px;
+            .pop_li{
+                width:33.3333333%;
+            }  
+        }
+  
+        #play_ad_02,.play_ad_02{
+            display:block;
+            width:100%;
+            height:90px;
+            background: $bg-primary;
+        }
+    }
+    .main.play01{
+        height:100%;
+        overflow:hidden;
+        .container{
+            height:100%;
+            overflow:hidden;
+        }
+        #mobile-right,#mobile-menu{
+            display:block;
+        } 
+        #mobile-right{
+            width:40px;
+            height:40px;
+        }
+        #mobile-menu .similargames_title{
+            justify-content: flex-start;
+            border-bottom: 1px solid #333;
+        }       
+        .game{
+            height:100%;
+            #game_tool_bar{
+                display: none!important;
+            }
+        }
+        #play_ad_03{
+            margin:$medium $small 0;
+        }
+        #play_m_ad_01 .play_m_ad_01{
+            display:block;
+            height:300px;
+            margin: 0!important;
+            padding:0 !important;
+        }
+        .wrapper .trendbox{
+            display:none;
+        }
+    } 
+    footer,.copyright{
+        display:none;
+    }
     footer{
         height: auto;
         padding: 24px 0;
@@ -3815,9 +3933,6 @@ span.usetips-item {
     .belong .iconlinear{
         margin-right: 2px;
     }
-    .game_innerbox{
-        top: 57%;
-    }
     .paging a{
         height: 32px;
         line-height: 32px;
@@ -3826,6 +3941,7 @@ span.usetips-item {
     }
 
 }
+
 @media only screen and (max-width:360px) {
     .index .banner_box h1{
         width: 100%
