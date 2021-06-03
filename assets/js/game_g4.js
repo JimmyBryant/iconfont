@@ -1,4 +1,4 @@
-
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 function setCookie(name, value, exdays) {
     var date = new Date();
     date.setDate(date.getDate() + exdays);
@@ -37,9 +37,9 @@ function getCookie(name) {
 //  $(this).toggleClass("icon_up")
 // })
 var jq_src = 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
-var s = document.createElement('script');
-s.src = jq_src;
-s.onload = function () {
+var jq_s = document.createElement('script');
+jq_s.src = jq_src;
+jq_s.onload = function () {
     if (document.body.clientWidth <= 767) {
         $("#share").click(function () {
             navigator.share({
@@ -151,8 +151,12 @@ s.onload = function () {
                     // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                     // 游戏页
-                    insertGads("play_ad_01", { client: ad_client, slot: "9283316629", format: 'auto' });
-                    insertGads("play_ad_02", { client: ad_client, slot: "5755135159", format: 'auto' });
+                    if(isMobile){
+                        insertGads("play_m_ad_01", { client: ad_client, slot: "9283316629", format: 'auto' });
+                    }else{
+                        insertGads("play_ad_01", { client: ad_client, slot: "9283316629", format: 'auto' });
+                    }
+                    insertGads("play_ad_02", { client: ad_client, slot: "5755135159", format: isMobile?'':'auto'});
                     insertGads("play_ad_03", { client: ad_client, slot: "4442053482" });
             }
 
@@ -212,7 +216,7 @@ s.onload = function () {
             });
 
 
-            $(document).on("click", ".icon_close", function () {
+            $(document).on("click", ".pop_li_box>.icon_close", function () {
                 $(this).parent().parent().remove();
                 var deletext = $(this).siblings(".pop_item").children(".pop_name").text();
                 localStorage.removeItem(deletext);
@@ -345,6 +349,18 @@ s.onload = function () {
     });
 }
 
-window.onload = function () {
-    document.body.appendChild(s);
+// do something on pageLoaded
+function onPageLoaded(callback){
+    if(document.readyState=='complete'){
+        callback&&callback();
+    }else{
+        window.addEventListener('load',function(){
+            callback&&callback();
+        })
+    }
 }
+
+onPageLoaded(function () {
+    // load jquery
+    document.body.appendChild(jq_s);
+})
