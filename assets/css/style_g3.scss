@@ -1051,8 +1051,8 @@ input:-internal-autofill-selected {
     display: none;
     left: 0;
     top: 0;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-color:$bg-pink;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -1237,7 +1237,7 @@ input:-internal-autofill-selected {
     z-index: 9;
     border-radius: 15px;
     box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
-    display: block;
+    display: none;
 }
 #gameplug button{
     position: absolute;
@@ -1839,22 +1839,27 @@ input:-internal-autofill-selected {
     margin: 0;    
     height: auto;
     width: calc(100% - 400px);
+    background: $bg-primary;
     position: absolute;
     top: 0px;
     left:200px;
     bottom: 120px;
     overflow: hidden;
+    .btn_exist-fullscreen{
+        display:none;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        left: $small;
+        top: $small;
+        z-index: 9;
+        .icon_close{
+            width: 30px;
+            height: 30px;
+        }
+    }
 }
-// .game{
-//     width: calc(100% - 324px);
-//     height: auto;
-//     background-color: #333;
-//     position: relative;
-//     margin: 0 0 0 324px;
-//     position: absolute;
-//     top: 0;
-//     bottom: 120px;
-// }
+
 .game_bg{
     width: 100%;
     height: 100%;
@@ -2413,7 +2418,6 @@ input:-internal-autofill-selected {
 }
 
 .usetips {
-
     width: 100%;
     padding: 20px;
     position: fixed;
@@ -2701,6 +2705,7 @@ span.usetips-item {
         margin:0 10px;
         border-radius: 1rem;
         overflow: hidden;
+
         #game_tool_bar{
             position: absolute;
             background:transparent;
@@ -2736,6 +2741,88 @@ span.usetips-item {
     }    
 }
 
+@media only screen and (max-width:1366px) {
+    html.m-root-play01,body.m-root-play01{
+        height:100%;
+        overflow:hidden;
+        .header{
+            display:none;
+        }
+    }
+    .m-root-play01 .main.play01{
+        height:100%;
+        overflow:hidden;
+        .container{
+            margin:0;
+            padding:0;
+            height:100%;
+            overflow:hidden;
+            flex-direction: column;
+            .ads-verticle-banner,
+            .recommend{
+                display: none;
+            }
+        }
+        #mobile-right,#mobile-menu{
+            display:block;
+        }       
+        #mobile-menu{
+            width:100%;
+            left:-100%;
+        }
+        .similargames_title_close{
+            display: block;
+        }
+        #mobile-menu .similargames_title{
+            justify-content: flex-start;
+            border-bottom: 1px solid #333;
+        }   
+        ul.similargames_content{
+            margin-right:-7px;
+            .pop_li{
+                padding-right:7px;
+                width:25%;
+            }
+        }  
+        #gameplug{
+            display: block;
+        }   
+        .game{
+            position:absolute;
+            width:100%;
+            height:auto;
+            top:0;
+            bottom:120px;
+            margin:0;
+            border-radius:0;
+            .btn_exist-fullscreen{display:block;}
+            #game_tool_bar{
+                display: none!important;
+            }
+        }
+        #play_ad_02{
+            position:absolute;
+            bottom:0;
+        }
+        #play_ad_02,.play_ad_02{
+            display:block;
+            width:100%;
+            height:120px;
+            background: $bg-primary;
+        }
+        #play_ad_03{
+            margin:$medium $small 0;
+        }
+        #play_m_ad_01 .play_m_ad_01{
+            display:block;
+            margin: 0!important;
+            padding:0 !important;
+        }
+        .wrapper .trendbox{
+            display:none;
+        }
+    }
+}
 @media only screen and (max-width:1280px) {
     .dots{width:90%;}
     .srcoll_box{
@@ -2902,8 +2989,7 @@ span.usetips-item {
     .list .listbox,
     .empty{
         margin-top: 0
-    }
-
+    } 
 }
 @media only screen and (max-width:1023px) {
     .left, .right, #disqus_thread{
@@ -3155,9 +3241,26 @@ span.usetips-item {
     .list_play_show li:nth-child(2){
         margin-top: 8px;
     }
-    html.play01,body.play01{
+    html.root-play01,body.root-play01{
         height:100%;
         overflow:hidden;
+    }
+    .m-root-play01 .main.play01{
+        ul.similargames_content{
+            margin-right:-7px;
+            .pop_li{
+                width:33.3333333%;
+            }  
+        }
+        .game{
+            bottom:90px;
+        }
+        #play_ad_02,.play_ad_02{
+            display:block;
+            width:100%;
+            height:90px;
+            background: $bg-primary;
+        }
     }
     .main.play01{
         height:100%;
@@ -3169,21 +3272,21 @@ span.usetips-item {
         #mobile-right,#mobile-menu{
             display:block;
         } 
+        #mobile-right{
+            width:40px;
+            height:40px;
+        }
         #mobile-menu .similargames_title{
             justify-content: flex-start;
             border-bottom: 1px solid #333;
         }       
         .game{
-            height:100%;
+            position: absolute;
+            top:0;
+            bottom: 90px;
             #game_tool_bar{
                 display: none!important;
             }
-        }
-        #play_ad_02,.play_ad_02{
-            display:block;
-            width:100%;
-            height:100px;
-            background: $bg-primary;
         }
         #play_ad_03{
             margin:$medium $small 0;
@@ -3483,6 +3586,20 @@ span.usetips-item {
     }
 
 
+}
+@media screen and (max-width:1366px) and (orientation:landscape){
+    html.root-play01, body.root-play01 {        
+        overflow-y: scroll;
+    }
+    .m-root-play01 .main.play01{
+        .game{
+            position:relative;
+            height:100%;
+        }
+        #play_ad_02{
+            display:none;
+        }
+    }
 }
 @media only screen and (max-width:728px) {
     .trendbox{
@@ -3851,9 +3968,6 @@ span.usetips-item {
     .belong .iconlinear{
         margin-right: 2px;
     }
-    .game_innerbox{
-
-    }
     .paging a{
         height: 32px;
         line-height: 32px;
@@ -3862,6 +3976,7 @@ span.usetips-item {
     }
 
 }
+
 @media only screen and (max-width:360px) {
     .index .banner_box h1{
         width: 100%
