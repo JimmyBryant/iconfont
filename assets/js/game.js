@@ -186,15 +186,19 @@ jq_s.onload = function () {
             }
             // 加载lazyload js   
             var s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
+            s.src = 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js';
+            // s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
             document.body.appendChild(s);
             s.onload = function () {
-                if(!isSupportWebp()){ 
-                    $('img.lazyload').each(function(i,item){
-                        $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
-                    })
-                }
-                lazyload();             // lazyload images
+                var lazyLoadInstance = new LazyLoad({
+                    elements_selector: ".lazyload"                   
+                });
+                // if(!isSupportWebp()){ 
+                //     $('img.lazyload').each(function(i,item){
+                //         $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
+                //     })
+                // }
+                // lazyload();             // lazyload images
             };
 
             // 展示广告

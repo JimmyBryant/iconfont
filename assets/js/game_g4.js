@@ -1,4 +1,5 @@
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 function setCookie(name, value, exdays) {
     var date = new Date();
     date.setDate(date.getDate() + exdays);
@@ -13,6 +14,17 @@ function getCookie(name) {
         if (arr[0] == name) return arr[1];
     }
     return "";
+}
+/**
+ * 判断浏览器是否支持webp
+ * @returns {Boolean}
+ */
+var isSupportWebp = function () {
+    try {
+        return document.createElement('canvas').toDataURL('image/webp', 0.5).indexOf('data:image/webp') === 0;
+    } catch (err) {
+        return false;
+    }
 }
 // window.onload = function () {
 //     var useAgree = document.getElementById('useAgree');
@@ -130,7 +142,7 @@ jq_s.onload = function () {
 
         function renderAd() {
             // adsense js
-            var ad_client = "ca-pub-4521061430183512";
+            var ad_client = "ca-pub-2994572689024438";
             $('head').append($('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">'));
             (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: ad_client, enable_page_level_ads: true, overlays: { bottom: true } });
             switch (location.hostname) {
@@ -139,7 +151,7 @@ jq_s.onload = function () {
                     // insertGads("home_ad_01", {client:ad_client,slot: "2855201156"});
                     // insertGads("home_ad_02", {client:ad_client,slot: "8054437383"});
                     // insertGads("home_ad_03", {client:ad_client,slot: "6741355711"});
-
+                    
                     // 分类页
                     insertGads("cate_ad_01", { client: ad_client, slot: "2965320282" });
 
@@ -151,12 +163,12 @@ jq_s.onload = function () {
                     // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                     // 游戏页
-                    if(isMobile){
+                    if (isMobile) {
                         insertGads("play_m_ad_01", { client: ad_client, slot: "9283316629", format: 'auto' });
-                    }else{
+                    } else {
                         insertGads("play_ad_01", { client: ad_client, slot: "9283316629", format: 'auto' });
                     }
-                    insertGads("play_ad_02", { client: ad_client, slot: "5755135159", format: isMobile?'':'auto'});
+                    insertGads("play_ad_02", { client: ad_client, slot: "5755135159", format: isMobile ? '' : 'auto' });
                     insertGads("play_ad_03", { client: ad_client, slot: "4442053482" });
             }
 
@@ -173,10 +185,19 @@ jq_s.onload = function () {
             }
             // 加载lazyload js   
             var s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
+            s.src = 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js';
+            // s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
             document.body.appendChild(s);
             s.onload = function () {
-                lazyload();             // lazyload images
+                var lazyLoadInstance = new LazyLoad({
+                    elements_selector: ".lazyload"
+                });
+                // if(!isSupportWebp()){ 
+                //     $('img.lazyload').each(function(i,item){
+                //         $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
+                //     })
+                // }
+                // lazyload();             // lazyload images
             };
 
             // 展示广告
@@ -350,12 +371,12 @@ jq_s.onload = function () {
 }
 
 // do something on pageLoaded
-function onPageLoaded(callback){
-    if(document.readyState=='complete'){
-        callback&&callback();
-    }else{
-        window.addEventListener('load',function(){
-            callback&&callback();
+function onPageLoaded(callback) {
+    if (document.readyState == 'complete') {
+        callback && callback();
+    } else {
+        window.addEventListener('load', function () {
+            callback && callback();
         })
     }
 }
