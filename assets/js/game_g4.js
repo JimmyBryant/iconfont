@@ -142,7 +142,7 @@ jq_s.onload = function () {
 
         function renderAd() {
             // adsense js
-            var ad_client = "ca-pub-2994572689024438";
+            var ad_client = "ca-pub-4521061430183512";
             $('head').append($('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">'));
             (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: ad_client, enable_page_level_ads: true, overlays: { bottom: true } });
             switch (location.hostname) {
@@ -151,7 +151,7 @@ jq_s.onload = function () {
                     // insertGads("home_ad_01", {client:ad_client,slot: "2855201156"});
                     // insertGads("home_ad_02", {client:ad_client,slot: "8054437383"});
                     // insertGads("home_ad_03", {client:ad_client,slot: "6741355711"});
-                    
+
                     // 分类页
                     insertGads("cate_ad_01", { client: ad_client, slot: "2965320282" });
 
