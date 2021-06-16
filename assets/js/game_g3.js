@@ -142,7 +142,7 @@ jq_s.onload = function () {
 
         function renderAd() {
             // adsense js
-            var ad_client = "ca-pub-2994572689024438";
+            var ad_client = "ca-pub-7116395709201717";
             $('head').append($('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">'));
             (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: ad_client, enable_page_level_ads: true, overlays: { bottom: true } });
             switch (location.hostname) {
@@ -153,27 +153,27 @@ jq_s.onload = function () {
                     // insertGads("home_ad_03", {client:ad_client,slot: "6741355711"});
 
                     // 分类页
-                    insertGads("cate_ad_01", { client: ad_client, slot: "6741355711" });
+                    insertGads("cate_ad_01", { client: ad_client, slot: "5756099183" });
 
                     // 详情页
-                    insertGads("detail_ad_01", { client: ad_client, slot: "7317190342" });
-                    insertGads("detail_ad_02", { client: ad_client, slot: "6004108672" });
-                    insertGads("detail_ad_03", { client: ad_client, slot: "9175947364" });
-                    insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "rectangle" });
+                    insertGads("detail_ad_01", { client: ad_client, slot: "5756099183" });
+                    insertGads("detail_ad_02", { client: ad_client, slot: "8190690833" });
+                    insertGads("detail_ad_03", { client: ad_client, slot: "4251445822" });
+                    insertGads("detail_ad_04", { client: ad_client, slot: "6686037477", format: "rectangle" });
                     // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                     // 游戏页
                     if(isMobile){
-                        insertGads("play_m_ad_01", { client: ad_client, slot: "7317190342", format: 'auto' });
+                        insertGads("play_m_ad_01", { client: ad_client, slot: "1193698331", format: 'auto' });
                     }else{
-                        insertGads("play_ad_01", { client: ad_client, slot: "7317190342", format: 'auto' });
-                    }
-
-                    insertGads("play_ad_02", { client: ad_client, slot: "6004108672", format: isMobile?'':'auto' });
-                    insertGads("play_ad_03", { client: ad_client, slot: "9175947364" });
+                        insertGads("play_ad_01", { client: ad_client, slot: "1193698331", format: 'auto' });
+                    }                    
+                    insertGads("play_ad_02", { client: ad_client, slot: "5181384119", format: isMobile?'':'auto' });
+                    insertGads("play_ad_03", { client: ad_client, slot: "1437240915" });
             }
 
-        }
+        }    
+        
         function initPage() {
             // 加载 google fonts
             const fontUrl = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto+Slab:wght@700&family=Roboto:wght@500&display=swap';
