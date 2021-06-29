@@ -915,7 +915,8 @@ input:-internal-autofill-selected {
 }
 
 .game_img img{
-    max-width: 100%;
+    width: 100%;
+    max-width:100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -1237,7 +1238,7 @@ input:-internal-autofill-selected {
     z-index: 9;
     border-radius: 15px;
     box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
-    display: block;
+    display: none;
 }
 #gameplug button{
     position: absolute;
@@ -1839,22 +1840,27 @@ input:-internal-autofill-selected {
     margin: 0;    
     height: auto;
     width: calc(100% - 400px);
+    background: $bg-primary;
     position: absolute;
     top: 0px;
     left:200px;
     bottom: 120px;
     overflow: hidden;
+    .btn_exist-fullscreen{
+        display:none;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        left: $small;
+        top: $small;
+        z-index: 9;
+        .icon_close{
+            width: 30px;
+            height: 30px;
+        }
+    }
 }
-// .game{
-//     width: calc(100% - 324px);
-//     height: auto;
-//     background-color: #333;
-//     position: relative;
-//     margin: 0 0 0 324px;
-//     position: absolute;
-//     top: 0;
-//     bottom: 120px;
-// }
+
 .game_bg{
     width: 100%;
     height: 100%;
@@ -2031,6 +2037,10 @@ input:-internal-autofill-selected {
     border-radius: 8px;
     overflow: hidden;
     margin: 0 auto;
+    img{
+        width:100%;
+        height:100%;
+    }
 }
 
 .related{
@@ -2379,6 +2389,7 @@ input:-internal-autofill-selected {
     display: block;
     color: #333333;
     line-height: 50px;
+    text-transform: capitalize;
     height: 50px;
     width: calc(100% - 6px);
     background-color: #fff;
@@ -2413,7 +2424,6 @@ input:-internal-autofill-selected {
 }
 
 .usetips {
-
     width: 100%;
     padding: 20px;
     position: fixed;
@@ -2701,6 +2711,7 @@ span.usetips-item {
         margin:0 10px;
         border-radius: 1rem;
         overflow: hidden;
+
         #game_tool_bar{
             position: absolute;
             background:transparent;
@@ -2735,6 +2746,7 @@ span.usetips-item {
         }
     }    
 }
+
 @media only screen and (max-width:1366px) {
     html.m-root-play01,body.m-root-play01{
         height:100%;
@@ -2777,15 +2789,26 @@ span.usetips-item {
                 padding-right:7px;
                 width:25%;
             }
-        }     
+        }  
+        #gameplug{
+            display: block;
+        }   
         .game{
+            position:absolute;
             width:100%;
-            height:100%;
+            height:auto;
+            top:0;
+            bottom:120px;
             margin:0;
             border-radius:0;
+            .btn_exist-fullscreen{display:block;}
             #game_tool_bar{
                 display: none!important;
             }
+        }
+        #play_ad_02{
+            position:absolute;
+            bottom:0;
         }
         #play_ad_02,.play_ad_02{
             display:block;
@@ -3235,7 +3258,9 @@ span.usetips-item {
                 width:33.3333333%;
             }  
         }
-  
+        .game{
+            bottom:90px;
+        }
         #play_ad_02,.play_ad_02{
             display:block;
             width:100%;
@@ -3262,7 +3287,9 @@ span.usetips-item {
             border-bottom: 1px solid #333;
         }       
         .game{
-            height:100%;
+            position: absolute;
+            top:0;
+            bottom: 90px;
             #game_tool_bar{
                 display: none!important;
             }
@@ -3566,6 +3593,20 @@ span.usetips-item {
 
 
 }
+@media screen and (max-width:1366px) and (orientation:landscape){
+    html.root-play01, body.root-play01 {        
+        overflow-y: scroll;
+    }
+    .m-root-play01 .main.play01{
+        .game{
+            position:relative;
+            height:100%;
+        }
+        #play_ad_02{
+            display:none;
+        }
+    }
+}
 @media only screen and (max-width:728px) {
     .trendbox{
         margin-top: $medium;
@@ -3683,6 +3724,10 @@ span.usetips-item {
         width: 150px;
         height: 150px;
         margin: 0 auto;
+        img{
+            width:100%;
+            height:100%;
+        }
     }
     .game_social{
         width: 100%;
@@ -3941,6 +3986,7 @@ span.usetips-item {
     }
 
 }
+
 @media only screen and (max-width:360px) {
     .index .banner_box h1{
         width: 100%
