@@ -1,13 +1,14 @@
 $containerWidth: 1280px;
 /** background color **/
-$bg-primary:#202020;
+$bg-primary:#bd361d;
 $bg-pink:#ff5b5b;
 $bg-secondary:#FFF;
-$bg-secondary-variant:#FAFAFA;
+$bg-secondary-variant:#fffcfc;
 /** color **/
-$color-primary:#202020;
-$color-secondary:#FFF;
-$color-secondary-variant:#FAFAFA;
+$color-primary:#FFF;
+$color-primary-variant:#e2e2e2;
+$color-secondary:#fbff00;
+$color-secondary-variant:#fdff95;
 $header-height:64px;
 $small:4px;
 $normal:8px;
@@ -110,7 +111,7 @@ ul li {
 
 body{
     min-height: 100vh;
-    background: #fdfdfd;
+    background: $bg-primary;
 }
 
 .lists{
@@ -475,10 +476,10 @@ footer .logo{
     font-stretch: normal;
     line-height: 18px;
     letter-spacing: 0px;
-    color: #999;
+    color: $color-primary;
 }
 .container li:hover a{
-    color: $bg-pink;
+    color: $color-secondary;
 }
 .sub .common_title{
     font-family: 'Roboto Slab';
@@ -772,10 +773,6 @@ input:-internal-autofill-selected {
     color: #aaa;
     margin-top: 4px;
 }
-
-
-
-
 .common_title{
     font-family: 'Roboto Slab';
     font-size: 22px;
@@ -783,9 +780,24 @@ input:-internal-autofill-selected {
     font-stretch: normal;
     line-height: 28px;
     letter-spacing: 0px;
-    color: #333333;
+    color: $color-primary;
     position: relative;
     text-transform: uppercase;
+    a{
+        color:inherit;
+    }
+    .viewAll {
+        font-family: 'Roboto Slab';
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        line-height: 16px;
+        letter-spacing: 0px;
+        color: $color-primary-variant;
+        position: absolute;
+        right: 0;
+        bottom: 4px;
+    }
 }
 
 .common_title .iconlinear{
@@ -795,20 +807,9 @@ input:-internal-autofill-selected {
     transform: translateY(4px);
 }
 
-.viewAll {
-    font-family: 'Roboto Slab';
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    line-height: 16px;
-    letter-spacing: 0px;
-    color: #999;
-    position: absolute;
-    right: 0;
-    bottom: 4px;
-}
+
 .viewAll:hover{
-    color: #ff3333;
+    color: $color-secondary;
 }
 
 .three_line_ads {
@@ -838,7 +839,7 @@ input:-internal-autofill-selected {
     font-stretch: normal;
     line-height: 16px;
     letter-spacing: 0px;
-    color: #ff3333;
+    color: $color-secondary;
     position: absolute;
     top: 2px;
     transform: translateX(4px);
@@ -863,8 +864,7 @@ input:-internal-autofill-selected {
     margin-top: 16px;
 }
 .pop_li_box{
-    box-shadow: 0px 2px 9px 1px 
-        rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 9px 1px rgba(145,22,0,80%);
     border-radius: 8px;  
     overflow: hidden;
 }
@@ -875,7 +875,7 @@ input:-internal-autofill-selected {
 }
 
 .game_img{
-    background-color: #eee;
+    background-color: transparent;
     display: block;
     padding-top: 100%;
     position: relative;
@@ -936,7 +936,7 @@ input:-internal-autofill-selected {
     font-family: sans-serif;
     font-size: 14px;
     line-height: 16px;
-    color: #333333;
+    color: $color-primary;
     overflow: hidden;    
     height: 16px;
     text-align: center;
@@ -2652,10 +2652,9 @@ span.usetips-item {
 .bread_crumbs>span,
 .bread_crumbs i{
     font-style: normal; 
-
     font-size: 14px;
     line-height: 18px;
-    color: #888;
+    color: $color-primary-variant;
     margin-bottom: 8px;
 }
 .bread_crumbs i:hover{
