@@ -1,6 +1,6 @@
 $containerWidth: 1280px;
 /** background color **/
-$bg-primary:#bd361d;
+$bg-primary:#17d7d8;
 $bg-pink:#ff5b5b;
 $bg-secondary:#FFF;
 $bg-secondary-variant:#fffcfc;
@@ -864,7 +864,7 @@ input:-internal-autofill-selected {
     margin-top: 16px;
 }
 .pop_li_box{
-    box-shadow: 0px 2px 9px 1px rgba(145,22,0,80%);
+    box-shadow: 0px 2px 9px 1px rgb(0 144 145);
     border-radius: 8px;  
     overflow: hidden;
 }
