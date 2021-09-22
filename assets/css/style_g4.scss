@@ -1,12 +1,12 @@
 $containerWidth: 1280px;
 /** background color **/
-$bg-primary:#969696;
+$bg-primary:#ff7843;
 $bg-pink:#ff5b5b;
 $bg-secondary:#FFF;
 $bg-secondary-variant:#f9f9f9;
 /** color **/
 $color-primary:#222;
-$color-primary-variant:#e2e2e2;
+$color-primary-variant:#FFF;
 $color-secondary:#e91e63;
 $color-secondary-variant:#ff7843;
 $header-height:64px;
@@ -424,7 +424,7 @@ footer .logo{
     width: 1px;
     height: 10px;
     display: inline-block;
-    background: #999;
+    background: #FFF;
     margin: 0 16px;
 }
 
@@ -864,7 +864,7 @@ input:-internal-autofill-selected {
     margin-top: 16px;
 }
 .pop_li_box{
-    box-shadow: 0px 2px 9px 1px rgba(121,119,119,80%);
+    box-shadow: 0px 2px 9px 1px rgb(151 43 0 / 50%);
     border-radius: 8px;  
     overflow: hidden;
 }
