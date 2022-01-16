@@ -1,13 +1,14 @@
 $containerWidth: 1280px;
 /** background color **/
-$bg-primary:#202020;
+$bg-primary:#ff7843;
 $bg-pink:#ff5b5b;
 $bg-secondary:#FFF;
-$bg-secondary-variant:#FAFAFA;
+$bg-secondary-variant:#f9f9f9;
 /** color **/
-$color-primary:#202020;
-$color-secondary:#FFF;
-$color-secondary-variant:#FAFAFA;
+$color-primary:#222;
+$color-primary-variant:#FFF;
+$color-secondary:#e91e63;
+$color-secondary-variant:#ff7843;
 $header-height:64px;
 $small:4px;
 $normal:8px;
@@ -110,7 +111,7 @@ ul li {
 
 body{
     min-height: 100vh;
-    background: #fdfdfd;
+    background: $bg-primary;
 }
 
 .lists{
@@ -423,7 +424,7 @@ footer .logo{
     width: 1px;
     height: 10px;
     display: inline-block;
-    background: #999;
+    background: #FFF;
     margin: 0 16px;
 }
 
@@ -475,10 +476,10 @@ footer .logo{
     font-stretch: normal;
     line-height: 18px;
     letter-spacing: 0px;
-    color: #999;
+    color: $color-primary;
 }
 .container li:hover a{
-    color: $bg-pink;
+    color: $color-secondary;
 }
 .sub .common_title{
     font-family: 'Roboto Slab';
@@ -772,10 +773,6 @@ input:-internal-autofill-selected {
     color: #aaa;
     margin-top: 4px;
 }
-
-
-
-
 .common_title{
     font-family: 'Roboto Slab';
     font-size: 22px;
@@ -783,9 +780,24 @@ input:-internal-autofill-selected {
     font-stretch: normal;
     line-height: 28px;
     letter-spacing: 0px;
-    color: #333333;
+    color: $color-primary;
     position: relative;
     text-transform: uppercase;
+    a{
+        color:inherit;
+    }
+    .viewAll {
+        font-family: 'Roboto Slab';
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        line-height: 16px;
+        letter-spacing: 0px;
+        color: $color-primary-variant;
+        position: absolute;
+        right: 0;
+        bottom: 4px;
+    }
 }
 
 .common_title .iconlinear{
@@ -795,20 +807,9 @@ input:-internal-autofill-selected {
     transform: translateY(4px);
 }
 
-.viewAll {
-    font-family: 'Roboto Slab';
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    line-height: 16px;
-    letter-spacing: 0px;
-    color: #999;
-    position: absolute;
-    right: 0;
-    bottom: 4px;
-}
+
 .viewAll:hover{
-    color: #ff3333;
+    color: $color-secondary;
 }
 
 .three_line_ads {
@@ -838,7 +839,7 @@ input:-internal-autofill-selected {
     font-stretch: normal;
     line-height: 16px;
     letter-spacing: 0px;
-    color: #ff3333;
+    color: $color-secondary;
     position: absolute;
     top: 2px;
     transform: translateX(4px);
@@ -863,8 +864,7 @@ input:-internal-autofill-selected {
     margin-top: 16px;
 }
 .pop_li_box{
-    box-shadow: 0px 2px 9px 1px 
-        rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 9px 1px rgb(151 43 0 / 50%);
     border-radius: 8px;  
     overflow: hidden;
 }
@@ -872,10 +872,11 @@ input:-internal-autofill-selected {
     padding: 10px 1px 12px;
     box-sizing: border-box;
     display: block;
+    background-color: $bg-secondary-variant;
 }
 
 .game_img{
-    background-color: #eee;
+    background-color: transparent;
     display: block;
     padding-top: 100%;
     position: relative;
@@ -915,7 +916,8 @@ input:-internal-autofill-selected {
 }
 
 .game_img img{
-    max-width: 100%;
+    width: 100%;
+    max-width:100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -935,11 +937,12 @@ input:-internal-autofill-selected {
     font-family: sans-serif;
     font-size: 14px;
     line-height: 16px;
-    color: #333333;
+    color: $color-primary;
     overflow: hidden;    
     height: 16px;
     text-align: center;
     word-break: break-all;
+    background-color: $bg-secondary-variant;
 }
 
 .pop_li p{
@@ -1048,22 +1051,21 @@ input:-internal-autofill-selected {
 }
 #mobile-right{
     position: absolute;
-    /*display: none;*/
+    display: none;
     left: 0;
     top: 0;
     width: 50px;
     height: 50px;
-    background-color: #000;
+    background-color:$bg-pink;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     transition: left .2s ease-out;
     z-index: 10;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.3);
-    border-radius: 4px;
 }
 .icon_bread{
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     fill: #fff;
     transform: translateX(-1px);
 }
@@ -1082,8 +1084,9 @@ input:-internal-autofill-selected {
 }
 #mobile-menu{
     position: absolute;
+    display: none;
     top: 0;
-    /*left: -100%;*/
+    left: -100%;
     left: 0;
     width: 200px;
     height: 100%;
@@ -1101,7 +1104,6 @@ input:-internal-autofill-selected {
     background:$color-primary;
     .top-wrapper{
         height: 202px;
-        margin-bottom:20px;
     }
 }
 
@@ -1135,18 +1137,27 @@ input:-internal-autofill-selected {
 .similargames_title_logo{
     display: block;
     width: 100%;
+    height: 64px;
     background: #FFF;
+    >img{
+        max-height: 100%;
+        width: auto;
+        max-width: 100%;
+        padding: $normal;
+        box-sizing: border-box;
+    }
 }
 .similargames_title{
     background-color:$bg-primary;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 12px 6px 0;
+    padding: $medium $small;
     .icon_button{
         cursor: pointer;
+        margin:0 $medium;
     }
     .iconlinears{
         width: 28px;
@@ -1187,7 +1198,7 @@ input:-internal-autofill-selected {
 .similargames_title_close .icon_close{
     width: 30px;
     height: 30px;
-    fill: #fff;
+    fill: $bg-primary;
 }
 .similargames_content{
     /*background-color: #00547c;*/
@@ -1229,7 +1240,7 @@ input:-internal-autofill-selected {
     z-index: 9;
     border-radius: 15px;
     box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
-    display: block;
+    display: none;
 }
 #gameplug button{
     position: absolute;
@@ -1831,22 +1842,27 @@ input:-internal-autofill-selected {
     margin: 0;    
     height: auto;
     width: calc(100% - 400px);
+    background: $bg-primary;
     position: absolute;
     top: 0px;
     left:200px;
     bottom: 120px;
     overflow: hidden;
+    .btn_exist-fullscreen{
+        display:none;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        left: $small;
+        top: $small;
+        z-index: 9;
+        .icon_close{
+            width: 30px;
+            height: 30px;
+        }
+    }
 }
-// .game{
-//     width: calc(100% - 324px);
-//     height: auto;
-//     background-color: #333;
-//     position: relative;
-//     margin: 0 0 0 324px;
-//     position: absolute;
-//     top: 0;
-//     bottom: 120px;
-// }
+
 .game_bg{
     width: 100%;
     height: 100%;
@@ -2023,6 +2039,10 @@ input:-internal-autofill-selected {
     border-radius: 8px;
     overflow: hidden;
     margin: 0 auto;
+    img{
+        width:100%;
+        height:100%;
+    }
 }
 
 .related{
@@ -2371,6 +2391,7 @@ input:-internal-autofill-selected {
     display: block;
     color: #333333;
     line-height: 50px;
+    text-transform: capitalize;
     height: 50px;
     width: calc(100% - 6px);
     background-color: #fff;
@@ -2405,7 +2426,6 @@ input:-internal-autofill-selected {
 }
 
 .usetips {
-
     width: 100%;
     padding: 20px;
     position: fixed;
@@ -2634,10 +2654,9 @@ span.usetips-item {
 .bread_crumbs>span,
 .bread_crumbs i{
     font-style: normal; 
-
     font-size: 14px;
     line-height: 18px;
-    color: #888;
+    color: $color-primary-variant;
     margin-bottom: 8px;
 }
 .bread_crumbs i:hover{
@@ -2693,6 +2712,7 @@ span.usetips-item {
         margin:0 10px;
         border-radius: 1rem;
         overflow: hidden;
+
         #game_tool_bar{
             position: absolute;
             background:transparent;
@@ -2728,6 +2748,88 @@ span.usetips-item {
     }    
 }
 
+@media only screen and (max-width:1366px) {
+    html.m-root-play01,body.m-root-play01{
+        height:100%;
+        overflow:hidden;
+        .header{
+            display:none;
+        }
+    }
+    .m-root-play01 .main.play01{
+        height:100%;
+        overflow:hidden;
+        .container{
+            margin:0;
+            padding:0;
+            height:100%;
+            overflow:hidden;
+            flex-direction: column;
+            .ads-verticle-banner,
+            .recommend{
+                display: none;
+            }
+        }
+        #mobile-right,#mobile-menu{
+            display:block;
+        }       
+        #mobile-menu{
+            width:100%;
+            left:-100%;
+        }
+        .similargames_title_close{
+            display: block;
+        }
+        #mobile-menu .similargames_title{
+            justify-content: flex-start;
+            border-bottom: 1px solid #333;
+        }   
+        ul.similargames_content{
+            margin-right:-7px;
+            .pop_li{
+                padding-right:7px;
+                width:25%;
+            }
+        }  
+        #gameplug{
+            display: block;
+        }   
+        .game{
+            position:absolute;
+            width:100%;
+            height:auto;
+            top:0;
+            bottom:120px;
+            margin:0;
+            border-radius:0;
+            .btn_exist-fullscreen{display:block;}
+            #game_tool_bar{
+                display: none!important;
+            }
+        }
+        #play_ad_02{
+            position:absolute;
+            bottom:0;
+        }
+        #play_ad_02,.play_ad_02{
+            display:block;
+            width:100%;
+            height:120px;
+            background: $bg-primary;
+        }
+        #play_ad_03{
+            margin:$medium $small 0;
+        }
+        #play_m_ad_01 .play_m_ad_01{
+            display:block;
+            margin: 0!important;
+            padding:0 !important;
+        }
+        .wrapper .trendbox{
+            display:none;
+        }
+    }
+}
 @media only screen and (max-width:1280px) {
     .dots{width:90%;}
     .srcoll_box{
@@ -2844,15 +2946,6 @@ span.usetips-item {
         .recommend{
             display: none;
         }
-        #play_ad_02{
-            display:block;
-            width:100%;
-            height:120px;
-        }
-        .play_ad_02{
-            width:100%;
-            height:120px;
-        }
     }
     .similargames_title_close{
         display: block;
@@ -2903,8 +2996,7 @@ span.usetips-item {
     .list .listbox,
     .empty{
         margin-top: 0
-    }
-
+    } 
 }
 @media only screen and (max-width:1023px) {
     .left, .right, #disqus_thread{
@@ -3009,12 +3101,6 @@ span.usetips-item {
     }
 }
 @media only screen and (max-width:780px) {
-    .main.play01{
-        #play_ad_02,.play_ad_02 {
-            width: 100%;
-            height: 120px;
-        }
-    } 
     .cate_box{
         flex-direction: column;
         align-items: baseline;
@@ -3094,7 +3180,7 @@ span.usetips-item {
     }
     .logo {
         width: 129px;
-        height:48px;
+        height: 48px;
     }
     .icon_menu{
         height: 48px;
@@ -3162,7 +3248,69 @@ span.usetips-item {
     .list_play_show li:nth-child(2){
         margin-top: 8px;
     }
-
+    html.root-play01,body.root-play01{
+        height:100%;
+        overflow:hidden;
+    }
+    .m-root-play01 .main.play01{
+        ul.similargames_content{
+            margin-right:-7px;
+            .pop_li{
+                width:33.3333333%;
+            }  
+        }
+        .game{
+            bottom:90px;
+        }
+        #play_ad_02,.play_ad_02{
+            display:block;
+            width:100%;
+            height:90px;
+            background: $bg-primary;
+        }
+    }
+    .main.play01{
+        height:100%;
+        overflow:hidden;
+        .container{
+            height:100%;
+            overflow:hidden;
+        }
+        #mobile-right,#mobile-menu{
+            display:block;
+        } 
+        #mobile-right{
+            width:40px;
+            height:40px;
+        }
+        #mobile-menu .similargames_title{
+            justify-content: flex-start;
+            border-bottom: 1px solid #333;
+        }       
+        .game{
+            position: absolute;
+            top:0;
+            bottom: 90px;
+            #game_tool_bar{
+                display: none!important;
+            }
+        }
+        #play_ad_03{
+            margin:$medium $small 0;
+        }
+        #play_m_ad_01 .play_m_ad_01{
+            display:block;
+            height:300px;
+            margin: 0!important;
+            padding:0 !important;
+        }
+        .wrapper .trendbox{
+            display:none;
+        }
+    } 
+    footer,.copyright{
+        display:none;
+    }
     footer{
         height: auto;
         padding: 24px 0;
@@ -3446,6 +3594,20 @@ span.usetips-item {
 
 
 }
+@media screen and (max-width:1366px) and (orientation:landscape){
+    html.root-play01, body.root-play01 {        
+        overflow-y: scroll;
+    }
+    .m-root-play01 .main.play01{
+        .game{
+            position:relative;
+            height:100%;
+        }
+        #play_ad_02{
+            display:none;
+        }
+    }
+}
 @media only screen and (max-width:728px) {
     .trendbox{
         margin-top: $medium;
@@ -3563,6 +3725,10 @@ span.usetips-item {
         width: 150px;
         height: 150px;
         margin: 0 auto;
+        img{
+            width:100%;
+            height:100%;
+        }
     }
     .game_social{
         width: 100%;
@@ -3813,9 +3979,6 @@ span.usetips-item {
     .belong .iconlinear{
         margin-right: 2px;
     }
-    .game_innerbox{
-        top: 57%;
-    }
     .paging a{
         height: 32px;
         line-height: 32px;
@@ -3824,6 +3987,7 @@ span.usetips-item {
     }
 
 }
+
 @media only screen and (max-width:360px) {
     .index .banner_box h1{
         width: 100%

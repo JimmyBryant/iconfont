@@ -1,3 +1,4 @@
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function setCookie(name, value, exdays) {
     var date = new Date();
@@ -18,14 +19,13 @@ function getCookie(name) {
  * 判断浏览器是否支持webp
  * @returns {Boolean}
  */
-var isSupportWebp = function () {
+ var isSupportWebp = function () {
     try {
         return document.createElement('canvas').toDataURL('image/webp', 0.5).indexOf('data:image/webp') === 0;
     } catch (err) {
         return false;
     }
 }
-
 // window.onload = function () {
 //     var useAgree = document.getElementById('useAgree');
 //     var userConsent = document.getElementById('userConsent');
@@ -163,36 +163,42 @@ jq_s.onload = function () {
                     // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                     // 游戏页
-                    insertGads("play_ad_01", { client: ad_client, slot: "1193698331", format: 'auto' });
-                    insertGads("play_ad_02", { client: ad_client, slot: "5181384119", format: 'auto' });
+                    if(isMobile){
+                        insertGads("play_m_ad_01", { client: ad_client, slot: "1193698331", format: 'auto' });
+                    }else{
+                        insertGads("play_ad_01", { client: ad_client, slot: "1193698331", format: 'auto' });
+                    }                    
+                    insertGads("play_ad_02", { client: ad_client, slot: "5181384119", format: isMobile?'':'auto' });
                     insertGads("play_ad_03", { client: ad_client, slot: "1437240915" });
             }
 
-        }
+        }    
+        
         function initPage() {
             // 加载 google fonts
             const fontUrl = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto+Slab:wght@700&family=Roboto:wght@500&display=swap';
             $('head').append($('<link rel="stylesheet">').attr('href', fontUrl));
-
             // 加载iconfont js
             $('body').append($('<script src="https://cdn.jsdelivr.net/gh/JimmyBryant/iconfont@latest/iconfont.js">'));
-
             // 设置game-audio
             if (document.querySelector('#game_audio>iframe')) {
                 $('#game_audio>iframe').attr('src', $('#game_audio>iframe').data('src'));
             }
-
             // 加载lazyload js   
             var s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
+            s.src = 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js';
+            // s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
             document.body.appendChild(s);
             s.onload = function () {
-                if(!isSupportWebp()){ 
-                    $('img.lazyload').each(function(i,item){
-                        $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
-                    })
-                }
-                lazyload();             // lazyload images
+                var lazyLoadInstance = new LazyLoad({
+                    elements_selector: ".lazyload"                   
+                });
+                // if(!isSupportWebp()){ 
+                //     $('img.lazyload').each(function(i,item){
+                //         $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
+                //     })
+                // }
+                // lazyload();             // lazyload images
             };
 
             // 展示广告
@@ -232,7 +238,7 @@ jq_s.onload = function () {
             });
 
 
-            $(document).on("click", ".icon_close", function () {
+            $(document).on("click", ".pop_li_box>.icon_close", function () {
                 $(this).parent().parent().remove();
                 var deletext = $(this).siblings(".pop_item").children(".pop_name").text();
                 localStorage.removeItem(deletext);
@@ -380,4 +386,3 @@ onPageLoaded(function () {
     // load jquery
     document.body.appendChild(jq_s);
 })
-

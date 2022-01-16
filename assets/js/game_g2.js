@@ -1,3 +1,4 @@
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function setCookie(name, value, exdays) {
     var date = new Date();
@@ -14,12 +15,43 @@ function getCookie(name) {
     }
     return "";
 }
-
+/**
+ * 判断浏览器是否支持webp
+ * @returns {Boolean}
+ */
+ var isSupportWebp = function () {
+    try {
+        return document.createElement('canvas').toDataURL('image/webp', 0.5).indexOf('data:image/webp') === 0;
+    } catch (err) {
+        return false;
+    }
+}
+// window.onload = function () {
+//     var useAgree = document.getElementById('useAgree');
+//     var userConsent = document.getElementById('userConsent');
+//     useAgree && useAgree.addEventListener('click', function () {
+//         setCookie('user-consent', '1', 365);
+//         userConsent.style.opacity = 0;
+//         userConsent.style.zIndex = -1;
+//         $("#home").css("bottom", "20px");
+//     });
+//     if (!getCookie('user-consent')) {
+//         if (userConsent) {
+//             userConsent.style.opacity = 1;
+//             userConsent.style.zIndex = 1000;
+//             $("#home").css("bottom", "60px");
+//         }
+//     }
+//     // setCookie('user-consent', '1', 365);
+// };
+// $(".icon_down").click(function(){
+//  $(".belong").toggleClass("belong_flex");
+//  $(this).toggleClass("icon_up")
+// })
 var jq_src = 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
-var s = document.createElement('script');
-s.src = jq_src;
-s.onload = function () {   
-
+var jq_s = document.createElement('script');
+jq_s.src = jq_src;
+jq_s.onload = function () {
     if (document.body.clientWidth <= 767) {
         $("#share").click(function () {
             navigator.share({
@@ -83,7 +115,6 @@ s.onload = function () {
      * do somethings when document ready 
      */
     $(function () {
-
         /**
          * 填充谷歌广告
          * @param id {String}
@@ -107,8 +138,7 @@ s.onload = function () {
                 (adsbygoogle = window.adsbygoogle || []).push({});
             }
         }
-
-
+        
         function renderAd() {
             // adsense js
             var ad_client = "ca-pub-3416557003071179";
@@ -132,8 +162,13 @@ s.onload = function () {
                     // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                     // 游戏页
-                    insertGads("play_ad_01", { client: ad_client, slot: "2567980443", format: 'auto' });
-                    insertGads("play_ad_02", { client: ad_client, slot: "6315653769", format: 'auto' });
+                    if(isMobile){
+                        insertGads("play_m_ad_01", { client: ad_client, slot: "2567980443", format: 'auto' });
+                    }else{
+                        insertGads("play_ad_01", { client: ad_client, slot: "2567980443", format: 'auto' });
+                    }
+
+                    insertGads("play_ad_02", { client: ad_client, slot: "6315653769", format: isMobile?'':'auto' });
                     insertGads("play_ad_03", { client: ad_client, slot: "2376408758" });
             }
 
@@ -151,12 +186,20 @@ s.onload = function () {
             }
             // 加载lazyload js   
             var s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
+            s.src = 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js';
+            // s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
             document.body.appendChild(s);
             s.onload = function () {
-                lazyload();             // lazyload images
+                var lazyLoadInstance = new LazyLoad({
+                    elements_selector: ".lazyload"                   
+                });
+                // if(!isSupportWebp()){ 
+                //     $('img.lazyload').each(function(i,item){
+                //         $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
+                //     })
+                // }
+                // lazyload();             // lazyload images
             };
-
 
             // 展示广告
             renderAd();
@@ -178,6 +221,7 @@ s.onload = function () {
                 }
             }
 
+
             $('#mobile-right').click(function () {
                 $("#mobile-menu").css("left", "0");
             });
@@ -193,7 +237,8 @@ s.onload = function () {
                 $(".hd-menu-box").slideToggle();
             });
 
-            $(document).on("click", ".icon_close", function () {
+
+            $(document).on("click", ".pop_li_box>.icon_close", function () {
                 $(this).parent().parent().remove();
                 var deletext = $(this).siblings(".pop_item").children(".pop_name").text();
                 localStorage.removeItem(deletext);
@@ -230,7 +275,8 @@ s.onload = function () {
             $(".dropdown").click(function (event) {
                 $(this).children(".dropdown-content").slideToggle();
                 event.stopPropagation();
-            });
+            })
+
 
             if (localStorage.localmark) {
                 // console.log(arr);
@@ -259,6 +305,7 @@ s.onload = function () {
                     }
                 });
             }
+
 
             $("#favorite").click(function () {
                 if ($(this).hasClass("remove_fav")) {
@@ -316,12 +363,26 @@ s.onload = function () {
 
 
                 $(this).toggleClass("remove_fav").toggleClass("click_fav");
+
             });
         }
 
         initPage();
-
     });
 }
 
-document.body.appendChild(s);
+// do something on pageLoaded
+function onPageLoaded(callback){
+    if(document.readyState=='complete'){
+        callback&&callback();
+    }else{
+        window.addEventListener('load',function(){
+            callback&&callback();
+        })
+    }
+}
+
+onPageLoaded(function () {
+    // load jquery
+    document.body.appendChild(jq_s);
+})
