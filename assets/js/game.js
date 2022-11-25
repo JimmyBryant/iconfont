@@ -19,7 +19,7 @@ function getCookie(name) {
  * 判断浏览器是否支持webp
  * @returns {Boolean}
  */
- var isSupportWebp = function () {
+var isSupportWebp = function () {
     try {
         return document.createElement('canvas').toDataURL('image/webp', 0.5).indexOf('data:image/webp') === 0;
     } catch (err) {
@@ -48,10 +48,21 @@ function getCookie(name) {
 //  $(".belong").toggleClass("belong_flex");
 //  $(this).toggleClass("icon_up")
 // })
-var jq_src = 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
-var jq_s = document.createElement('script');
-jq_s.src = jq_src;
-jq_s.onload = function () {
+
+
+var errorCDN = function (e) {
+    const src = e.getAttribute("data-error");
+    const scriptDOM = document.createElement("script");
+    scriptDOM.src = src;
+    console.warn(e, 'CDN ERROR');
+    document.head.appendChild(scriptDOM);
+    if (e.onload) {
+        scriptDOM.onload = e.onload;
+    }
+    e.remove();
+}
+
+var jqReadyHanlder = function () {
     if (document.body.clientWidth <= 767) {
         $("#share").click(function () {
             navigator.share({
@@ -129,6 +140,7 @@ jq_s.onload = function () {
                 ad.setAttribute('data-ad-client', config.client);
                 ad.setAttribute('data-ad-slot', config.slot);
                 if (config.format) {
+                    ad.setAttribute('data-full-width-responsive', true);
                     ad.setAttribute('data-ad-format', config.format)
                 }
                 if (config.layoutKey) {
@@ -153,24 +165,29 @@ jq_s.onload = function () {
                     // insertGads("home_ad_03", {client:ad_client,slot: "6741355711"});
 
                     // 分类页
-                    insertGads("cate_ad_01", { client: ad_client, slot: "6741355711" });
+                    insertGads("cate_ad_01", { client: ad_client, slot: "6741355711", format: 'auto' });
 
                     // 详情页
-                    insertGads("detail_ad_01", { client: ad_client, slot: "7317190342" });
-                    insertGads("detail_ad_02", { client: ad_client, slot: "6004108672" });
-                    insertGads("detail_ad_03", { client: ad_client, slot: "9175947364" });
-                    insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "rectangle" });
+                    insertGads("detail_ad_01", { client: ad_client, slot: "7317190342", format: 'auto' });
+                    insertGads("detail_ad_02", { client: ad_client, slot: "6004108672", format: 'auto' });
+                    insertGads("detail_ad_03", { client: ad_client, slot: "9175947364", format: 'auto' });
+                    insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "auto" });
                     // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                     // 游戏页
-                    if(isMobile){
+                    if (isMobile) {
                         insertGads("play_m_ad_01", { client: ad_client, slot: "7317190342", format: 'auto' });
-                    }else{
+                    } else {
                         insertGads("play_ad_01", { client: ad_client, slot: "7317190342", format: 'auto' });
                     }
 
-                    insertGads("play_ad_02", { client: ad_client, slot: "6004108672", format: isMobile?'':'auto' });
-                    insertGads("play_ad_03", { client: ad_client, slot: "9175947364" });
+                    insertGads("play_ad_02", { client: ad_client, slot: "6004108672", format: isMobile ? '' : 'auto' });
+                    if (isMobile) {
+                        insertGads("play_m_ad_03", { client: ad_client, slot: "9175947364", format: 'auto' });
+                    } else {
+                        insertGads("play_ad_03", { client: ad_client, slot: "9175947364", format: 'auto' });
+                    }
+
             }
 
         }
@@ -179,27 +196,15 @@ jq_s.onload = function () {
             const fontUrl = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto+Slab:wght@700&family=Roboto:wght@500&display=swap';
             $('head').append($('<link rel="stylesheet">').attr('href', fontUrl));
             // 加载iconfont js
-            $('body').append($('<script src="https://cdn.jsdelivr.net/gh/JimmyBryant/iconfont@latest/iconfont.js">'));
+            var icon_script = document.createElement('script');
+            icon_script.src = 'https://cdn.jsdelivr.net/gh/JimmyBryant/iconfont@latest/iconfont.js';
+            icon_script.setAttribute('data-error', '/assets/iconfont/iconfont.js');
+            icon_script.setAttribute('onerror', 'errorCDN(this)');
+            document.body.append(icon_script);
             // 设置game-audio
             if (document.querySelector('#game_audio>iframe')) {
                 $('#game_audio>iframe').attr('src', $('#game_audio>iframe').data('src'));
             }
-            // 加载lazyload js   
-            var s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js';
-            // s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
-            document.body.appendChild(s);
-            s.onload = function () {
-                var lazyLoadInstance = new LazyLoad({
-                    elements_selector: ".lazyload"                   
-                });
-                // if(!isSupportWebp()){ 
-                //     $('img.lazyload').each(function(i,item){
-                //         $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
-                //     })
-                // }
-                // lazyload();             // lazyload images
-            };
 
             // 展示广告
             renderAd();
@@ -365,6 +370,30 @@ jq_s.onload = function () {
                 $(this).toggleClass("remove_fav").toggleClass("click_fav");
 
             });
+
+            /**
+             * 创建游戏预览视频
+             */
+            function createPreviewVideo(src, onload) {
+                var video = document.createElement('video');
+                video.className = 'preview';
+                video.loop = 'loop';
+                video.autoplay = 'autoplay';
+                video.muted = 'muted';
+                video.src = src;
+                if (onload) {
+                    video.addEventListener('load', onload);
+                }
+                return video;
+            }
+
+            $('.pop_li_box>.game_img[data-preview]').hover(function (e) {
+                var src = $(this).data('preview');
+                var video = createPreviewVideo(src);
+                this.append(video);
+            }, function (e) {
+                $(this).find('video.preview').remove()
+            });
         }
 
         initPage();
@@ -372,17 +401,42 @@ jq_s.onload = function () {
 }
 
 // do something on pageLoaded
-function onPageLoaded(callback){
-    if(document.readyState=='complete'){
-        callback&&callback();
-    }else{
-        window.addEventListener('load',function(){
-            callback&&callback();
+function onPageLoaded(callback) {
+    if (document.readyState == 'complete') {
+        callback && callback();
+    } else {
+        window.addEventListener('load', function () {
+            callback && callback();
         })
     }
 }
 
 onPageLoaded(function () {
     // load jquery
+    var jq_src = 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
+    var jq_err = '/assets/js/jquery-3.6.0.min.js';
+    var jq_s = document.createElement('script');
+    jq_s.src = jq_src;
+    jq_s.setAttribute('onerror', 'errorCDN(this)');
+    jq_s.setAttribute('data-error', jq_err);
+    jq_s.onload = function () {
+        jqReadyHanlder();
+    }
     document.body.appendChild(jq_s);
 })
+
+// lazyload images 
+var lazyLoadInstance = new LazyLoad({
+    elements_selector: ".lazyload"
+});
+// var s = document.createElement('script');
+// s.src = 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js';
+// // s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
+// document.head.appendChild(s);
+// s.onload = function () {
+//     var lazyLoadInstance = new LazyLoad({
+//         elements_selector: ".lazyload"                   
+//     });
+// };
+
+
