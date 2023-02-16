@@ -5,7 +5,8 @@ function setCookie(name, value, exdays) {
     date.setDate(date.getDate() + exdays);
     var expires = "expires=" + date.toUTCString();
     document.cookie = name + "=" + value + "; " + expires + ';path=/';
-}
+};
+
 function getCookie(name) {
     var strCookie = document.cookie;
     var arrCookie = strCookie.split("; ");
@@ -14,7 +15,7 @@ function getCookie(name) {
         if (arr[0] == name) return arr[1];
     }
     return "";
-}
+};
 /**
  * 判断浏览器是否支持webp
  * @returns {Boolean}
@@ -25,7 +26,7 @@ function getCookie(name) {
     } catch (err) {
         return false;
     }
-}
+};
 // window.onload = function () {
 //     var useAgree = document.getElementById('useAgree');
 //     var userConsent = document.getElementById('userConsent');
@@ -48,10 +49,20 @@ function getCookie(name) {
 //  $(".belong").toggleClass("belong_flex");
 //  $(this).toggleClass("icon_up")
 // })
-var jq_src = 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
-var jq_s = document.createElement('script');
-jq_s.src = jq_src;
-jq_s.onload = function () {
+
+var errorCDN = function(e){
+    const src = e.getAttribute("data-error");
+    const scriptDOM = document.createElement("script");
+    scriptDOM.src =src; 
+    console.warn(e,'CDN ERROR');
+    document.head.appendChild(scriptDOM);
+    if(e.onload){
+        scriptDOM.onload = e.onload;
+    }
+    e.remove();
+}
+
+var jqReadyHanlder = function () {
     if (document.body.clientWidth <= 767) {
         $("#share").click(function () {
             navigator.share({
@@ -128,8 +139,10 @@ jq_s.onload = function () {
                 ad.className = 'adsbygoogle ' + id;
                 ad.setAttribute('data-ad-client', config.client);
                 ad.setAttribute('data-ad-slot', config.slot);
-                if (config.format) {
-                    ad.setAttribute('data-ad-format', config.format)
+                ad.setAttribute('data-full-width-responsive',true);
+                // ad.setAttribute('data-ad-format','auto');
+                if (config.format!='false') {
+                    ad.setAttribute('data-ad-format', 'auto')
                 }
                 if (config.layoutKey) {
                     ad.setAttribute('data-ad-layout-key', config.layoutKey)
@@ -143,8 +156,9 @@ jq_s.onload = function () {
         function renderAd() {
             // adsense js
             var ad_client = "ca-pub-7116395709201717";
+            // var ad_client = "ca-pub-8841494842378633";
             $('head').append($('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">'));
-            (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: ad_client, enable_page_level_ads: true, overlays: { bottom: true } });
+            (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: ad_client, enable_page_level_ads: true});
             switch (location.hostname) {
                 default:
                     // 首页广告
@@ -160,6 +174,7 @@ jq_s.onload = function () {
                     insertGads("detail_ad_02", { client: ad_client, slot: "8190690833" });
                     insertGads("detail_ad_03", { client: ad_client, slot: "4251445822" });
                     insertGads("detail_ad_04", { client: ad_client, slot: "6686037477", format: "rectangle" });
+                    insertGads("detail_ad_05", { client: ad_client, slot: "7339001872", format: "rectangle" });
                     // insertGads("detail_ad_04", { client: ad_client, slot: "4401202219", format: "fluid", layoutKey: "-h6-7+1j-3w+4l" });
 
                     // 游戏页
@@ -168,7 +183,7 @@ jq_s.onload = function () {
                     }else{
                         insertGads("play_ad_01", { client: ad_client, slot: "1193698331", format: 'auto' });
                     }                    
-                    insertGads("play_ad_02", { client: ad_client, slot: "5181384119", format: isMobile?'':'auto' });
+                    insertGads("play_ad_02", { client: ad_client, slot: "5181384119", format: isMobile?'false':'auto' });
                     insertGads("play_ad_03", { client: ad_client, slot: "1437240915" });
             }
 
@@ -178,28 +193,18 @@ jq_s.onload = function () {
             // 加载 google fonts
             const fontUrl = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto+Slab:wght@700&family=Roboto:wght@500&display=swap';
             $('head').append($('<link rel="stylesheet">').attr('href', fontUrl));
+
             // 加载iconfont js
-            $('body').append($('<script src="https://cdn.jsdelivr.net/gh/JimmyBryant/iconfont@latest/iconfont.js">'));
+            var icon_script = document.createElement('script');
+            icon_script.src = 'https://cdn.jsdelivr.net/gh/JimmyBryant/iconfont@latest/iconfont.js';
+            icon_script.setAttribute('data-error','/assets/iconfont/iconfont.js');
+            icon_script.setAttribute('onerror','errorCDN(this)');
+            document.body.append(icon_script);
+            
             // 设置game-audio
             if (document.querySelector('#game_audio>iframe')) {
                 $('#game_audio>iframe').attr('src', $('#game_audio>iframe').data('src'));
             }
-            // 加载lazyload js   
-            var s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js';
-            // s.src = 'https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js';
-            document.body.appendChild(s);
-            s.onload = function () {
-                var lazyLoadInstance = new LazyLoad({
-                    elements_selector: ".lazyload"                   
-                });
-                // if(!isSupportWebp()){ 
-                //     $('img.lazyload').each(function(i,item){
-                //         $(item).attr('data-src',$(item).data('src').replace('.webp','.jpg'));
-                //     })
-                // }
-                // lazyload();             // lazyload images
-            };
 
             // 展示广告
             renderAd();
@@ -251,7 +256,7 @@ jq_s.onload = function () {
                     if (arr[i] == deletext) {
                         arr.splice(jQuery.inArray(arr[i], arr), 1);
                     }
-                })
+                });
                 // console.log(arr);
                 if (arr.length != 0) {
                     arr = arr.join('/');
@@ -268,14 +273,14 @@ jq_s.onload = function () {
             });
 
             $(document).click(function (event) {
-                $(this).children(".dropdown-content").slideUp()
+                $(this).children(".dropdown-content").slideUp();
                 event.stopPropagation();
             });
 
             $(".dropdown").click(function (event) {
                 $(this).children(".dropdown-content").slideToggle();
                 event.stopPropagation();
-            })
+            });
 
 
             if (localStorage.localmark) {
@@ -318,7 +323,7 @@ jq_s.onload = function () {
                         if (arr[i] == removeName) {
                             arr.splice(jQuery.inArray(arr[i], arr), 1);
                         }
-                    })
+                    });
                     if (arr.length != 0) {
                         arr = arr.join('/');
                         arr = arr + '/';
@@ -342,7 +347,8 @@ jq_s.onload = function () {
                         'txt2': txt2,
                         'img2': img2
                         // 'playNum2': playNum2
-                    }
+                    };
+
                     var json = JSON.stringify(localjson);
 
                     localStorage.setItem(txt2, json);
@@ -365,11 +371,35 @@ jq_s.onload = function () {
                 $(this).toggleClass("remove_fav").toggleClass("click_fav");
 
             });
+
+            /**
+             * 创建游戏预览视频
+             */
+            function createPreviewVideo(src,onload){
+                var video = document.createElement('video');
+                video.className = 'preview';
+                video.loop='loop';
+                video.autoplay='autoplay';
+                video.muted='muted';
+                video.src = src;
+                if(onload){
+                    video.addEventListener('load',onload);
+                }
+                return video;
+            }
+
+            $('.pop_li_box>.game_img[data-preview]').hover(function(e){
+                var src = $(this).data('preview');
+                var video = createPreviewVideo(src);
+                this.append(video);
+            },function(e){
+                $(this).find('video.preview').remove()
+            });
         }
 
         initPage();
     });
-}
+};
 
 // do something on pageLoaded
 function onPageLoaded(callback){
@@ -380,9 +410,23 @@ function onPageLoaded(callback){
             callback&&callback();
         })
     }
-}
+};
 
 onPageLoaded(function () {
     // load jquery
+    var jq_src = 'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
+    var jq_err = '/assets/js/jquery-3.6.0.min.js';
+    var jq_s = document.createElement('script');
+    jq_s.src = jq_src;
+    jq_s.setAttribute('onerror','errorCDN(this)');
+    jq_s.setAttribute('data-error',jq_err);
+    jq_s.onload = function(){
+        jqReadyHanlder();
+    }
     document.body.appendChild(jq_s);
-})
+});
+
+// lazyload image
+var lazyLoadInstance = new LazyLoad({
+    elements_selector: ".lazyload"                   
+});
