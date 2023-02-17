@@ -944,7 +944,20 @@ input:-internal-autofill-selected {
     word-break: break-all;
     background-color: $bg-secondary-variant;
 }
-
+span.pop_name {
+    position: absolute;
+    bottom: -125%;
+    left: 0;
+    right: 0;
+    font-weight: 500;
+    z-index:999;
+    transition: bottom .3s cubic-bezier(.25, .1, .25, 1);
+    background-color: transparent;
+    color: #FFF;
+}
+.pop_li_box .game_img:hover span.pop_name{
+    bottom:.2rem;
+}
 .pop_li p{
 
     font-size: 13px;
